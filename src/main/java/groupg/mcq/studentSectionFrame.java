@@ -9,6 +9,7 @@ public class studentSectionFrame extends JInternalFrame {
     public studentSectionFrame() {
         super("Student Section", true, true, true, true);
         setSize(350, 350);
+        getContentPane().add(new JScrollPane(new JTextArea("Student Section",20,20)));
         setLocation(x , y);
     }
 }

@@ -36,6 +36,7 @@ public class Display extends JFrame {
         teacherButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 teacherSectionFrame newFrame = new teacherSectionFrame();
 
                 mainDesktop.add(newFrame);
@@ -46,6 +47,7 @@ public class Display extends JFrame {
         studentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 studentSectionFrame newFrame = new studentSectionFrame();
 
                 mainDesktop.add(newFrame);
