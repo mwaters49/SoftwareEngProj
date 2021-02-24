@@ -2,18 +2,26 @@ package groupg.mcq;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Display extends JFrame {
 
     private JDesktopPane mainDesktop;
     JToolBar toolBar = new JToolBar();
-    Action teacherAction;
+
+    JButton teacherButton = new JButton("Teacher Section");
+    JButton studentButton = new JButton("Student Section");
+    JButton exitButton = new JButton("Exit");
 
     public Display() {
         mainDesktop = new JDesktopPane();
 
-        toolBar.add(teacherAction);
+        toolBar.add(teacherButton);
+        toolBar.addSeparator();
+        toolBar.add(studentButton);
+        toolBar.addSeparator();
+        toolBar.add(exitButton);
 
         Container container = getContentPane();
         container.add(mainDesktop, BorderLayout.CENTER);
@@ -22,8 +30,36 @@ public class Display extends JFrame {
         Toolkit toolkit = getToolkit();
         Dimension dimension = toolkit.getScreenSize();
 
-        // center window on screen
         setBounds(100, 100, dimension.width - 200, dimension.height - 200);
         setVisible(true);
+
+        teacherButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                teacherSectionFrame newFrame = new teacherSectionFrame();
+
+                mainDesktop.add(newFrame);
+                newFrame.setVisible(true);
+            }
+        });
+
+        studentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                studentSectionFrame newFrame = new studentSectionFrame();
+
+                mainDesktop.add(newFrame);
+                newFrame.setVisible(true);
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               System.exit(0);
+            }
+        });
+
     }
 }
+
