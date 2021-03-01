@@ -30,7 +30,7 @@ public class Display extends JFrame {
         Toolkit toolkit = getToolkit();
         Dimension dimension = toolkit.getScreenSize();
 
-        setBounds(100, 100, dimension.width - 200, dimension.height - 200);
+        setBounds(100, 100, dimension.width - 700, dimension.height - 400);
         setVisible(true);
 
         teacherButton.addActionListener(new ActionListener() {
