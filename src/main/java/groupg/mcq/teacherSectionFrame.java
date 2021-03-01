@@ -2,6 +2,8 @@ package groupg.mcq;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class teacherSectionFrame extends JInternalFrame {
 
@@ -19,7 +21,6 @@ public class teacherSectionFrame extends JInternalFrame {
     JPanel panel = new JPanel();
     JLabel questionLabel = new JLabel("Please Enter your questions here");
     static final int x = 30, y = 30;
-
 
     public teacherSectionFrame() {
         super("Teacher Section", false, true, false, true);

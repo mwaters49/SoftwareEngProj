@@ -51,6 +51,7 @@ public class Display extends JFrame {
                 studentSectionFrame newFrame = new studentSectionFrame();
 
                 mainDesktop.add(newFrame);
+
                 newFrame.setVisible(true);
             }
         });

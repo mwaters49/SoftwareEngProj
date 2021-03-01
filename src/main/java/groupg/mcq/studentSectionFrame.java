@@ -67,5 +67,11 @@ public class studentSectionFrame extends JInternalFrame {
         panel.add(answer4Text);
 
         setLocation(x , y);
+
+     //   teacherSectionFrame teacherSectionFrame = new teacherSectionFrame();
+      //  System.out.println(getQuestion());
+      //  textArea.setText(teacherSectionFrame.getQuestion());
+
+      //  textArea.setText(getQuestion());
     }
 }
