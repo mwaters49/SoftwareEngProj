@@ -21,6 +21,8 @@ public class teacherSectionFrame extends JInternalFrame {
     JTextField answer4Text = new JTextField("");
     JPanel panel = new JPanel();
     JLabel questionLabel = new JLabel("Please Enter your questions here");
+
+    String question;
     static final int x = 30, y = 30;
 
     public teacherSectionFrame() {
@@ -62,5 +64,32 @@ public class teacherSectionFrame extends JInternalFrame {
         panel.add(answer4Text);
 
         setLocation(x , y);
+
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setQuestion(questionText.getText());
+            }
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    setClosed(true);
+                } catch (PropertyVetoException propertyVetoException) {
+                    propertyVetoException.printStackTrace();
+                }
+            }
+        });
     }
+
+    void setQuestion(String question){
+        this.question = question;
+        System.out.println(question);
+    }
+
+    public String getQuestion(){
+        System.out.println(question);
+        return question; }
 }
