@@ -37,7 +37,7 @@ public class Display extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                teacherSectionFrame newFrame = new teacherSectionFrame();
+                TeacherSectionFrame newFrame = new TeacherSectionFrame();
 
                 mainDesktop.add(newFrame);
                 newFrame.setVisible(true);
@@ -48,7 +48,7 @@ public class Display extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                studentSectionFrame newFrame = new studentSectionFrame();
+                StudentSectionFrame newFrame = new StudentSectionFrame();
 
                 mainDesktop.add(newFrame);
 
