@@ -1,7 +1,6 @@
 package groupg.mcq;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
@@ -24,7 +23,15 @@ public class TeacherSectionFrame extends JInternalFrame {
     JLabel questionLabel = new JLabel("Please Enter your questions here");
 
     public static ArrayList<String> questionArray = new ArrayList<String>();
+    public static ArrayList<String> answerArray1 = new ArrayList<String>();
+    public static ArrayList<String> answerArray2 = new ArrayList<String>();
+    public static ArrayList<String> answerArray3 = new ArrayList<String>();
+    public static ArrayList<String> answerArray4 = new ArrayList<String>();
+    public static ArrayList<ArrayList<String>> arrayListAnswers = new ArrayList<ArrayList<String>>();
+
     public static int questionCount;
+    public static int correctAnswerCount;
+    public static String correctAnswer;
 
     static final int x = 30, y = 30;
 
@@ -72,7 +79,8 @@ public class TeacherSectionFrame extends JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setQuestion(questionText.getText());
-                questionText.setText(null);
+
+
                 questionCount++;
             }
         });
@@ -93,7 +101,29 @@ public class TeacherSectionFrame extends JInternalFrame {
 
     void setQuestion(String question){
         questionArray.add(question);
-        System.out.println(question);
+    }
+
+    void setAnswers(String answer1, String answer2, String answer3, String answer4){
+        answerArray1.add(answer1);
+        answerArray2.add(answer2);
+        answerArray3.add(answer3);
+        answerArray4.add(answer4);
+    }
+
+    String getAnswer1(int index){
+        return answerArray1.get(index);
+    }
+
+    String getAnswer2(int index){
+        return answerArray2.get(index);
+    }
+
+    String getAnswer3(int index){
+        return answerArray3.get(index);
+    }
+
+    String getAnswer4(int index){
+        return answerArray4.get(index);
     }
 
     String getQuestion(int index){
