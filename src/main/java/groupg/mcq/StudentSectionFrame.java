@@ -7,6 +7,9 @@ import java.beans.PropertyVetoException;
 
 public class StudentSectionFrame extends JInternalFrame {
 
+
+    TeacherSectionFrame teacherSectionFrame = new TeacherSectionFrame();
+
     JButton nextButton = new JButton("Next");
     JButton endButton = new JButton("EndQuiz");
     JRadioButton choiceOne = new JRadioButton("Answer 1");
@@ -21,6 +24,8 @@ public class StudentSectionFrame extends JInternalFrame {
     JPanel panel = new JPanel();
     JLabel questionLabel = new JLabel("Question: ");
     static final int x = 30, y = 30;
+
+    int buttonCount;
 
 
     public StudentSectionFrame() {
@@ -84,14 +89,24 @@ public class StudentSectionFrame extends JInternalFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                buttonCount++;
+                if(buttonCount == teacherSectionFrame.questionCount - 1 ){
+                    nextButton.setText("End Exam");
+                }
+                if(!teacherSectionFrame.getQuestion(buttonCount).equals("endExam")) {
+                    textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
+                }
+                else{
+                    try {
+                        setClosed(true);
+                    } catch (PropertyVetoException propertyVetoException) {
+                        propertyVetoException.printStackTrace();
+                    }
+                }
 
             }
         });
 
-        TeacherSectionFrame teacherSectionFrame = new TeacherSectionFrame();
-        //System.out.println(teacherSectionFrame.question);
-        textArea.setText(teacherSectionFrame.getQuestion());
-
-
+        textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
     }
 }

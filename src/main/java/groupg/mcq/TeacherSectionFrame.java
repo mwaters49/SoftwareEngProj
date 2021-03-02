@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
 
 public class TeacherSectionFrame extends JInternalFrame {
 
@@ -22,7 +23,9 @@ public class TeacherSectionFrame extends JInternalFrame {
     JPanel panel = new JPanel();
     JLabel questionLabel = new JLabel("Please Enter your questions here");
 
-    public static String question;
+    public static ArrayList<String> questionArray = new ArrayList<String>();
+    public static int questionCount;
+
     static final int x = 30, y = 30;
 
     public TeacherSectionFrame() {
@@ -69,6 +72,8 @@ public class TeacherSectionFrame extends JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setQuestion(questionText.getText());
+                questionText.setText(null);
+                questionCount++;
             }
         });
 
@@ -82,14 +87,21 @@ public class TeacherSectionFrame extends JInternalFrame {
                 }
             }
         });
+
+
     }
 
     void setQuestion(String question){
-        this.question = question;
+        questionArray.add(question);
         System.out.println(question);
     }
 
-    String getQuestion(){
-        return question;
+    String getQuestion(int index){
+        if(index < questionArray.size()) {
+            return questionArray.get(index);
+        }
+        else{
+            return "endExam";
+        }
     }
 }
