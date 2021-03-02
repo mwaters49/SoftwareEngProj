@@ -2,10 +2,13 @@ package groupg.mcq;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 
 public class studentSectionFrame extends JInternalFrame {
 
-    JButton submitButton = new JButton("Next");
+    JButton nextButton = new JButton("Next");
     JButton endButton = new JButton("EndQuiz");
     JRadioButton choiceOne = new JRadioButton("Answer 1");
     JRadioButton choiceTwo = new JRadioButton("Answer 2");
@@ -32,7 +35,7 @@ public class studentSectionFrame extends JInternalFrame {
         textArea.setText("Placeholder");
 
         textArea.setBounds(20,30,300,30);
-        submitButton.setBounds(200,255,90,50);
+        nextButton.setBounds(200,255,90,50);
         endButton.setBounds(45,255,90,50);
         questionLabel.setBounds(20, 1, 250, 40);
 
@@ -53,7 +56,7 @@ public class studentSectionFrame extends JInternalFrame {
 
         panel.add(questionLabel);
         panel.add(textArea);
-        panel.add(submitButton);
+        panel.add(nextButton);
         panel.add(endButton);
 
         panel.add(choiceOne);
@@ -68,9 +71,27 @@ public class studentSectionFrame extends JInternalFrame {
 
         setLocation(x , y);
 
-     //   teacherSectionFrame teacherSectionFrame = new teacherSectionFrame();
+        endButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    setClosed(true);
+                } catch (PropertyVetoException propertyVetoException) {
+                    propertyVetoException.printStackTrace();
+                }
+            }
+        });
+
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+      //  teacherSectionFrame teacherSectionFrame = new teacherSectionFrame();
       //  System.out.println(getQuestion());
-      //  textArea.setText(teacherSectionFrame.getQuestion());
+     //   textArea.setText(teacherSectionFrame.getQuestion());
 
       //  textArea.setText(getQuestion());
     }
