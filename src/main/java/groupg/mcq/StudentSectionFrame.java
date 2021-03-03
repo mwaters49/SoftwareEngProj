@@ -96,6 +96,10 @@ public class StudentSectionFrame extends JInternalFrame {
                 }
                 if(!teacherSectionFrame.getQuestion(buttonCount).equals("endExam")) {
                     textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
+                    answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
+                    answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
+                    answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
+                    answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
                 }
                 else{
                     try {
@@ -109,5 +113,9 @@ public class StudentSectionFrame extends JInternalFrame {
         });
 
         textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
+        answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
+        answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
+        answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
+        answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
     }
 }

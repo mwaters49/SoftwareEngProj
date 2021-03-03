@@ -78,10 +78,47 @@ public class TeacherSectionFrame extends JInternalFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAnswers(answer1Text.getText(), answer2Text.getText(), answer3Text.getText(), answer4Text.getText());
                 setQuestion(questionText.getText());
 
 
                 questionCount++;
+
+                teacherAnswerCheck();
+                switch(correctAnswerCount){
+                    case 1:
+                        correctAnswer = answer1Text.getText();
+                        choiceTwo.setSelected(false);
+                        choiceThree.setSelected(false);
+                        choiceFour.setSelected(false);
+                        break;
+                    case 2:
+                        correctAnswer = answer2Text.getText();
+                        choiceOne.setSelected(false);
+                        choiceThree.setSelected(false);
+                        choiceFour.setSelected(false);
+                        break;
+                    case 3:
+                        correctAnswer = answer3Text.getText();
+                        choiceOne.setSelected(false);
+                        choiceTwo.setSelected(false);
+                        choiceFour.setSelected(false);
+                        break;
+                    case 4:
+                        correctAnswer = answer4Text.getText();
+                        choiceOne.setSelected(false);
+                        choiceTwo.setSelected(false);
+                        choiceThree.setSelected(false);
+                        break;
+                }
+                System.out.println(correctAnswer);
+
+                questionText.setText(null);
+                answer1Text.setText(null);
+                answer2Text.setText(null);
+                answer3Text.setText(null);
+                answer4Text.setText(null);
+
             }
         });
 
@@ -132,6 +169,22 @@ public class TeacherSectionFrame extends JInternalFrame {
         }
         else{
             return "endExam";
+        }
+    }
+
+    void teacherAnswerCheck(){
+
+        if(choiceOne.isSelected()){
+            correctAnswerCount = 1;
+        }
+        else if(choiceTwo.isSelected()){
+            correctAnswerCount = 2;
+        }
+        else if(choiceThree.isSelected()){
+            correctAnswerCount = 3;
+        }
+        else if(choiceFour.isSelected()){
+            correctAnswerCount = 4;
         }
     }
 }
