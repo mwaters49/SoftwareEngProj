@@ -94,28 +94,17 @@ public class TeacherSectionFrame extends JInternalFrame {
                 teacherAnswerCheck();
                 switch(correctAnswerCount){
                     case 1:
-                        correctAnswer = answer1Text.getText();
-                        choiceTwo.setSelected(false);
-                        choiceThree.setSelected(false);
-                        choiceFour.setSelected(false);
+                        System.out.println(answer1Text.getText());
+                        correctAnswer.add(answer1Text.getText());
                         break;
                     case 2:
-                        correctAnswer = answer2Text.getText();
-                        choiceOne.setSelected(false);
-                        choiceThree.setSelected(false);
-                        choiceFour.setSelected(false);
+                        correctAnswer.add(answer2Text.getText());
                         break;
                     case 3:
-                        correctAnswer = answer3Text.getText();
-                        choiceOne.setSelected(false);
-                        choiceTwo.setSelected(false);
-                        choiceFour.setSelected(false);
+                        correctAnswer.add(answer3Text.getText());
                         break;
                     case 4:
-                        correctAnswer = answer4Text.getText();
-                        choiceOne.setSelected(false);
-                        choiceTwo.setSelected(false);
-                        choiceThree.setSelected(false);
+                        correctAnswer.add(answer4Text.getText());
                         break;
                 }
                 System.out.println(correctAnswer);
@@ -126,6 +115,7 @@ public class TeacherSectionFrame extends JInternalFrame {
                 answer3Text.setText(null);
                 answer4Text.setText(null);
 
+                buttonGroup.clearSelection();
             }
         });
 
@@ -139,8 +129,6 @@ public class TeacherSectionFrame extends JInternalFrame {
                 }
             }
         });
-
-
     }
 
     void setQuestion(String question){

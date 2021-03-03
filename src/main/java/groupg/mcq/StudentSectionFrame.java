@@ -126,4 +126,20 @@ public class StudentSectionFrame extends JInternalFrame {
         answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
         answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
     }
+
+    void studentAnswerCheck(){
+
+        if(choiceOne.isSelected()){
+            correctAnswerCount = 1;
+        }
+        else if(choiceTwo.isSelected()){
+            correctAnswerCount = 2;
+        }
+        else if(choiceThree.isSelected()){
+            correctAnswerCount = 3;
+        }
+        else if(choiceFour.isSelected()){
+            correctAnswerCount = 4;
+        }
+    }
 }
