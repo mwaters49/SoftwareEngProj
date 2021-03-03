@@ -29,6 +29,8 @@ public class TeacherSectionFrame extends JInternalFrame {
     public static ArrayList<String> answerArray4 = new ArrayList<String>();
     public static ArrayList<ArrayList<String>> arrayListAnswers = new ArrayList<ArrayList<String>>();
 
+    ButtonGroup buttonGroup = new ButtonGroup();
+
     public static int questionCount;
     public static int correctAnswerCount;
     public static String correctAnswer;
@@ -67,6 +69,11 @@ public class TeacherSectionFrame extends JInternalFrame {
         panel.add(choiceTwo);
         panel.add(choiceThree);
         panel.add(choiceFour);
+
+        buttonGroup.add(choiceOne);
+        buttonGroup.add(choiceTwo);
+        buttonGroup.add(choiceThree);
+        buttonGroup.add(choiceFour);
 
         panel.add(answer1Text);
         panel.add(answer2Text);

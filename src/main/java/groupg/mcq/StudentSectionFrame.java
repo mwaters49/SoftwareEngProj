@@ -25,6 +25,7 @@ public class StudentSectionFrame extends JInternalFrame {
     JPanel panel = new JPanel();
     JLabel questionLabel = new JLabel("Question: ");
     static final int x = 30, y = 30;
+    ButtonGroup buttonGroup = new ButtonGroup();
 
     int buttonCount;
 
@@ -69,10 +70,17 @@ public class StudentSectionFrame extends JInternalFrame {
         panel.add(choiceThree);
         panel.add(choiceFour);
 
+        buttonGroup.add(choiceOne);
+        buttonGroup.add(choiceTwo);
+        buttonGroup.add(choiceThree);
+        buttonGroup.add(choiceFour);
+
         panel.add(answer1Text);
         panel.add(answer2Text);
         panel.add(answer3Text);
         panel.add(answer4Text);
+
+
 
         setLocation(x , y);
 
