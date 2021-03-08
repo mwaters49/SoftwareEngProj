@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 
 public class Display extends JFrame {
 
@@ -48,7 +49,12 @@ public class Display extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                StudentSectionFrame newFrame = new StudentSectionFrame();
+                StudentSectionFrame newFrame = null;
+                try {
+                    newFrame = new StudentSectionFrame();
+                } catch (PropertyVetoException propertyVetoException) {
+                    propertyVetoException.printStackTrace();
+                }
 
                 mainDesktop.add(newFrame);
 

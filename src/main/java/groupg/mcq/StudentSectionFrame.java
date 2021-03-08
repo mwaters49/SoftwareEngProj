@@ -30,7 +30,7 @@ public class StudentSectionFrame extends JInternalFrame {
     int buttonCount;
 
 
-    public StudentSectionFrame() {
+    public StudentSectionFrame() throws PropertyVetoException {
         super("Student Section", false, true, false, true);
 
         setSize(350, 350);
@@ -38,7 +38,7 @@ public class StudentSectionFrame extends JInternalFrame {
 
         panel.setLayout(null);
         textArea.setEditable(false);
-        textArea.setText("Placeholder");
+        textArea.setText("");
 
         textArea.setBounds(20,30,300,30);
         nextButton.setBounds(200,255,90,50);
@@ -98,33 +98,77 @@ public class StudentSectionFrame extends JInternalFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buttonCount++;
-                if(buttonCount == teacherSectionFrame.questionCount - 1 ){
-                    nextButton.setText("End Exam");
-                }
-                if(!teacherSectionFrame.getQuestion(buttonCount).equals("endExam")) {
-                    textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
-                    answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
-                    answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
-                    answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
-                    answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
-                }
-                else{
-                    try {
-                        setClosed(true);
-                    } catch (PropertyVetoException propertyVetoException) {
-                        propertyVetoException.printStackTrace();
-                    }
-                }
 
+
+                if (!isCorrectAnswerSelected()) {
+                    System.out.println("Correct Answer Not Selected,Please Select");
+                }else{
+
+                    buttonCount++;
+
+                    if (!teacherSectionFrame.getQuestion(buttonCount).equals("endExam")) {
+                        textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
+                        answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
+                        answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
+                        answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
+                        answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
+                    } else {
+                        try {
+                            setClosed(true);
+                        } catch (PropertyVetoException propertyVetoException) {
+                            propertyVetoException.printStackTrace();
+                        }
+                    }
+
+                    studentAnswerCheck();
+                    switch (correctAnswerCount) {
+                        case 1:
+                            correctAnswer.add(answer1Text.getText());
+                            break;
+                        case 2:
+                            correctAnswer.add(answer2Text.getText());
+                            break;
+                        case 3:
+                            correctAnswer.add(answer3Text.getText());
+                            break;
+                        case 4:
+                            correctAnswer.add(answer4Text.getText());
+                            break;
+                    }
+
+                    if (correctAnswer.get(buttonCount - 1).equals(teacherSectionFrame.correctAnswer.get(buttonCount - 1))) {
+                        score++;
+                        System.out.println("Correct");
+                        //  JOptionPane.showMessageDialog(panel, "Correct");
+                    } else {
+                        System.out.println("Incorrect");
+                        // JOptionPane.showMessageDialog(panel, "Incorrect");
+                    }
+
+
+                    if (nextButton.getText().equals("End Exam")) {
+                        JOptionPane.showMessageDialog(panel, "You Scored: " + score + " out of " + teacherSectionFrame.questionCount
+                                + "\n" + "Percentage: " + ((float) score / (float) teacherSectionFrame.questionCount) * 100 + "%");
+                    }
+
+                    if (buttonCount == teacherSectionFrame.questionCount - 1) {
+                        nextButton.setText("End Exam");
+                    }
+
+                    buttonGroup.clearSelection();
+                }
             }
         });
+        if(buttonCount > 0) {
+            textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
+            answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
+            answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
+            answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
+            answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
+        }else{
+            System.out.println("No Questions");
+        }
 
-        textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
-        answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
-        answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
-        answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
-        answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
     }
 
     void studentAnswerCheck(){
@@ -141,5 +185,9 @@ public class StudentSectionFrame extends JInternalFrame {
         else if(choiceFour.isSelected()){
             correctAnswerCount = 4;
         }
+    }
+
+    boolean isCorrectAnswerSelected(){
+        return choiceOne.isSelected() || choiceTwo.isSelected() || choiceThree.isSelected() || choiceFour.isSelected();
     }
 }

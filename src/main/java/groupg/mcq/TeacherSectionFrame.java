@@ -85,37 +85,46 @@ public class TeacherSectionFrame extends JInternalFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setAnswers(answer1Text.getText(), answer2Text.getText(), answer3Text.getText(), answer4Text.getText());
-                setQuestion(questionText.getText());
+                if (!isQuestionFilled()) {
+                    System.out.println("Question Not Filled");
+                } else if (!isAnswersFilled()) {
+                    System.out.println("Answers Not Filled");
+                } else if (!isCorrectAnswerSelected()) {
+                    System.out.println("Correct Answer Not Selected");
+                } else {
+                    setAnswers(answer1Text.getText(), answer2Text.getText(), answer3Text.getText(), answer4Text.getText());
+                    setQuestion(questionText.getText());
+
+                    questionCount++;
+
+                    teacherAnswerCheck();
+                    switch (correctAnswerCount) {
+                        case 1:
+                            System.out.println(answer1Text.getText());
+                            correctAnswer.add(answer1Text.getText());
+                            break;
+                        case 2:
+                            correctAnswer.add(answer2Text.getText());
+                            break;
+                        case 3:
+                            correctAnswer.add(answer3Text.getText());
+                            break;
+                        case 4:
+                            correctAnswer.add(answer4Text.getText());
+                            break;
+                    }
 
 
-                questionCount++;
+                    System.out.println(correctAnswer);
 
-                teacherAnswerCheck();
-                switch(correctAnswerCount){
-                    case 1:
-                        System.out.println(answer1Text.getText());
-                        correctAnswer.add(answer1Text.getText());
-                        break;
-                    case 2:
-                        correctAnswer.add(answer2Text.getText());
-                        break;
-                    case 3:
-                        correctAnswer.add(answer3Text.getText());
-                        break;
-                    case 4:
-                        correctAnswer.add(answer4Text.getText());
-                        break;
+                    questionText.setText(null);
+                    answer1Text.setText(null);
+                    answer2Text.setText(null);
+                    answer3Text.setText(null);
+                    answer4Text.setText(null);
+
+                    buttonGroup.clearSelection();
                 }
-                System.out.println(correctAnswer);
-
-                questionText.setText(null);
-                answer1Text.setText(null);
-                answer2Text.setText(null);
-                answer3Text.setText(null);
-                answer4Text.setText(null);
-
-                buttonGroup.clearSelection();
             }
         });
 
@@ -181,5 +190,21 @@ public class TeacherSectionFrame extends JInternalFrame {
         else if(choiceFour.isSelected()){
             correctAnswerCount = 4;
         }
+    }
+
+    boolean isCorrectAnswerSelected(){
+        return choiceOne.isSelected() || choiceTwo.isSelected() || choiceThree.isSelected() || choiceFour.isSelected();
+    }
+
+    boolean isAnswersFilled(){
+        return (!answer1Text.getText().equals("") && answer1Text.getText() != null) &&
+                (!answer2Text.getText().equals("") && answer2Text.getText() != null) &&
+                (!answer3Text.getText().equals("") && answer3Text.getText() != null) &&
+                (!answer4Text.getText().equals("") && answer4Text.getText() != null);
+
+    }
+
+    boolean isQuestionFilled(){
+        return !questionText.getText().equals("") && questionText.getText() != null;
     }
 }
