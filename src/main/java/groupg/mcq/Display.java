@@ -50,15 +50,20 @@ public class Display extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 StudentSectionFrame newFrame = null;
-                try {
-                    newFrame = new StudentSectionFrame();
-                } catch (PropertyVetoException propertyVetoException) {
-                    propertyVetoException.printStackTrace();
+                if(TeacherSectionFrame.questionCount > 0) {
+                    try {
+                        newFrame = new StudentSectionFrame();
+                    } catch (PropertyVetoException propertyVetoException) {
+                        propertyVetoException.printStackTrace();
+                    }
+
+                    mainDesktop.add(newFrame);
+
+                    newFrame.setVisible(true);
+
+                }else {
+                    JOptionPane.showMessageDialog(mainDesktop, "Teacher has not set a question");
                 }
-
-                mainDesktop.add(newFrame);
-
-                newFrame.setVisible(true);
             }
         });
 

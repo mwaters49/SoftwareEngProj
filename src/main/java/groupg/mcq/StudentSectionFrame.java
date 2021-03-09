@@ -27,7 +27,8 @@ public class StudentSectionFrame extends JInternalFrame {
     static final int x = 30, y = 30;
     ButtonGroup buttonGroup = new ButtonGroup();
 
-    int buttonCount;
+    int buttonCount, correctAnswerCount, score;
+    ArrayList<String> correctAnswer = new ArrayList<String>();
 
 
     public StudentSectionFrame() throws PropertyVetoException {
@@ -40,20 +41,20 @@ public class StudentSectionFrame extends JInternalFrame {
         textArea.setEditable(false);
         textArea.setText("");
 
-        textArea.setBounds(20,30,300,30);
-        nextButton.setBounds(200,255,90,50);
-        endButton.setBounds(45,255,90,50);
+        textArea.setBounds(20, 30, 300, 30);
+        nextButton.setBounds(200, 255, 90, 50);
+        endButton.setBounds(45, 255, 90, 50);
         questionLabel.setBounds(20, 1, 250, 40);
 
-        choiceOne.setBounds(15,80,90,30);
-        choiceTwo.setBounds(15,120,90,30);
-        choiceThree.setBounds(15,160,90,30);
-        choiceFour.setBounds(15,200,90,30);
+        choiceOne.setBounds(15, 80, 90, 30);
+        choiceTwo.setBounds(15, 120, 90, 30);
+        choiceThree.setBounds(15, 160, 90, 30);
+        choiceFour.setBounds(15, 200, 90, 30);
 
-        answer1Text.setBounds(105,80,215,30);
-        answer2Text.setBounds(105,120,215,30);
-        answer3Text.setBounds(105,160,215,30);
-        answer4Text.setBounds(105,200,215,30);
+        answer1Text.setBounds(105, 80, 215, 30);
+        answer2Text.setBounds(105, 120, 215, 30);
+        answer3Text.setBounds(105, 160, 215, 30);
+        answer4Text.setBounds(105, 200, 215, 30);
 
         answer1Text.setEditable(false);
         answer2Text.setEditable(false);
@@ -80,9 +81,11 @@ public class StudentSectionFrame extends JInternalFrame {
         panel.add(answer3Text);
         panel.add(answer4Text);
 
+        setLocation(x, y);
 
-
-        setLocation(x , y);
+        if (buttonCount == teacherSectionFrame.questionCount - 1) {
+            nextButton.setText("End Exam");
+        }
 
         endButton.addActionListener(new ActionListener() {
             @Override
@@ -101,7 +104,7 @@ public class StudentSectionFrame extends JInternalFrame {
 
 
                 if (!isCorrectAnswerSelected()) {
-                    System.out.println("Correct Answer Not Selected,Please Select");
+                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected,Please Select");
                 }else{
 
                     buttonCount++;
@@ -138,13 +141,7 @@ public class StudentSectionFrame extends JInternalFrame {
 
                     if (correctAnswer.get(buttonCount - 1).equals(teacherSectionFrame.correctAnswer.get(buttonCount - 1))) {
                         score++;
-                        System.out.println("Correct");
-                        //  JOptionPane.showMessageDialog(panel, "Correct");
-                    } else {
-                        System.out.println("Incorrect");
-                        // JOptionPane.showMessageDialog(panel, "Incorrect");
                     }
-
 
                     if (nextButton.getText().equals("End Exam")) {
                         JOptionPane.showMessageDialog(panel, "You Scored: " + score + " out of " + teacherSectionFrame.questionCount
@@ -159,16 +156,11 @@ public class StudentSectionFrame extends JInternalFrame {
                 }
             }
         });
-        if(buttonCount > 0) {
-            textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
-            answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
-            answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
-            answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
-            answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
-        }else{
-            System.out.println("No Questions");
-        }
-
+        textArea.setText(teacherSectionFrame.getQuestion(buttonCount));
+        answer1Text.setText(teacherSectionFrame.getAnswer1(buttonCount));
+        answer2Text.setText(teacherSectionFrame.getAnswer2(buttonCount));
+        answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
+        answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
     }
 
     void studentAnswerCheck(){

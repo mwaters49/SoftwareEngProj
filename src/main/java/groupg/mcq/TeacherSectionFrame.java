@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TeacherSectionFrame extends JInternalFrame {
 
     JButton submitButton = new JButton("Submit");
     JButton cancelButton = new JButton("Cancel");
+    JButton clearAllButton = new JButton("Clear All");
+    JButton clearLastButton = new JButton("Clear Last");
     JRadioButton choiceOne = new JRadioButton("Answer 1");
     JRadioButton choiceTwo = new JRadioButton("Answer 2");
     JRadioButton choiceThree = new JRadioButton("Answer 3");
@@ -27,13 +30,12 @@ public class TeacherSectionFrame extends JInternalFrame {
     public static ArrayList<String> answerArray2 = new ArrayList<String>();
     public static ArrayList<String> answerArray3 = new ArrayList<String>();
     public static ArrayList<String> answerArray4 = new ArrayList<String>();
-    public static ArrayList<ArrayList<String>> arrayListAnswers = new ArrayList<ArrayList<String>>();
 
     ButtonGroup buttonGroup = new ButtonGroup();
 
     public static int questionCount;
     public static int correctAnswerCount;
-    public static String correctAnswer;
+    public static ArrayList<String> correctAnswer = new ArrayList<String>();
 
     static final int x = 30, y = 30;
 
@@ -46,8 +48,10 @@ public class TeacherSectionFrame extends JInternalFrame {
         panel.setLayout(null);
 
         questionText.setBounds(20,30,300,30);
-        submitButton.setBounds(200,255,90,50);
-        cancelButton.setBounds(45,255,90,50);
+        submitButton.setBounds(200,280,95,25);
+        cancelButton.setBounds(45,280,95,25);
+        clearAllButton.setBounds(200,245,95,25);
+        clearLastButton.setBounds(45,245,95,25);
         questionLabel.setBounds(20, 1, 250, 40);
 
         choiceOne.setBounds(15,80,90,30);
@@ -64,6 +68,8 @@ public class TeacherSectionFrame extends JInternalFrame {
         panel.add(questionText);
         panel.add(submitButton);
         panel.add(cancelButton);
+        panel.add(clearAllButton);
+        panel.add(clearLastButton);
 
         panel.add(choiceOne);
         panel.add(choiceTwo);
@@ -86,11 +92,11 @@ public class TeacherSectionFrame extends JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isQuestionFilled()) {
-                    System.out.println("Question Not Filled");
+                    JOptionPane.showMessageDialog(panel, "Question Not Filled");
                 } else if (!isAnswersFilled()) {
-                    System.out.println("Answers Not Filled");
+                    JOptionPane.showMessageDialog(panel, "Answers Not Filled");
                 } else if (!isCorrectAnswerSelected()) {
-                    System.out.println("Correct Answer Not Selected");
+                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected");
                 } else {
                     setAnswers(answer1Text.getText(), answer2Text.getText(), answer3Text.getText(), answer4Text.getText());
                     setQuestion(questionText.getText());
@@ -114,9 +120,6 @@ public class TeacherSectionFrame extends JInternalFrame {
                             break;
                     }
 
-
-                    System.out.println(correctAnswer);
-
                     questionText.setText(null);
                     answer1Text.setText(null);
                     answer2Text.setText(null);
@@ -135,6 +138,56 @@ public class TeacherSectionFrame extends JInternalFrame {
                     setClosed(true);
                 } catch (PropertyVetoException propertyVetoException) {
                     propertyVetoException.printStackTrace();
+                }
+            }
+        });
+
+        clearAllButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(questionCount > 0) {
+                    questionArray.clear();
+                    correctAnswer.clear();
+                    answerArray1.clear();
+                    answerArray2.clear();
+                    answerArray3.clear();
+                    answerArray4.clear();
+                    questionCount = 0;
+                    correctAnswerCount = 0;
+
+                    if (questionArray.isEmpty() && correctAnswer.isEmpty()) {
+                        JOptionPane.showMessageDialog(panel, "All questions & answers have been cleared");
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "An error occurred while clearing, Try Again");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
+                }
+            }
+        });
+
+        clearLastButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(questionCount > 0) {
+                    int oldSize = questionArray.size();
+                    int index = questionArray.size() - 1;
+                    questionArray.remove(index);
+                    correctAnswer.remove(index);
+                    answerArray1.remove(index);
+                    answerArray2.remove(index);
+                    answerArray3.remove(index);
+                    answerArray4.remove(index);
+                    questionCount -= 1;
+                    correctAnswerCount -= 1;
+
+                    if (questionArray.size() == (oldSize - 1)) {
+                        JOptionPane.showMessageDialog(panel, "Last question & answers have been cleared");
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "An error occurred while clearing, Try Again");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
                 }
             }
         });
@@ -201,7 +254,6 @@ public class TeacherSectionFrame extends JInternalFrame {
                 (!answer2Text.getText().equals("") && answer2Text.getText() != null) &&
                 (!answer3Text.getText().equals("") && answer3Text.getText() != null) &&
                 (!answer4Text.getText().equals("") && answer4Text.getText() != null);
-
     }
 
     boolean isQuestionFilled(){
