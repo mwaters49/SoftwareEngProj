@@ -8,15 +8,18 @@ import java.beans.PropertyVetoException;
 
 public class Display extends JFrame {
 
-    private JDesktopPane mainDesktop;
+    JDesktopPane mainDesktop;
     JToolBar toolBar = new JToolBar();
 
     JButton teacherButton = new JButton("Teacher Section");
     JButton studentButton = new JButton("Student Section");
     JButton exitButton = new JButton("Exit");
+    TeacherSectionFrame newTeacherFrame;
+    StudentSectionFrame newStudentFrame;
 
-    public Display() {
+    public Display(){
         mainDesktop = new JDesktopPane();
+
 
         toolBar.add(teacherButton);
         toolBar.addSeparator();
@@ -37,11 +40,11 @@ public class Display extends JFrame {
         teacherButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                newTeacherFrame = new TeacherSectionFrame();
 
-                TeacherSectionFrame newFrame = new TeacherSectionFrame();
+                mainDesktop.add(newTeacherFrame);
 
-                mainDesktop.add(newFrame);
-                newFrame.setVisible(true);
+                newTeacherFrame.setVisible(true);
             }
         });
 
@@ -49,19 +52,19 @@ public class Display extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                StudentSectionFrame newFrame = null;
-                if(TeacherSectionFrame.questionCount > 0) {
+
+                if (TeacherSectionFrame.questionCount > 0) {
+
                     try {
-                        newFrame = new StudentSectionFrame();
+                        newStudentFrame = new StudentSectionFrame();
                     } catch (PropertyVetoException propertyVetoException) {
                         propertyVetoException.printStackTrace();
                     }
 
-                    mainDesktop.add(newFrame);
+                    mainDesktop.add(newStudentFrame);
+                    newStudentFrame.setVisible(true);
 
-                    newFrame.setVisible(true);
-
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(mainDesktop, "Teacher has not set a question");
                 }
             }
@@ -73,7 +76,6 @@ public class Display extends JFrame {
                System.exit(0);
             }
         });
-
     }
 }
 
