@@ -21,7 +21,7 @@ public class DisplayTests {
         display.teacherButton.doClick();
         assertTrue(display.newTeacherFrame.isVisible());
     }
-    
+
     @DisplayName("Test clicking student button shows a new student frame" +
                 "with questions set in teacher frame")
     @Test

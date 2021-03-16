@@ -92,11 +92,7 @@ public class StudentSectionFrame extends JInternalFrame {
         endButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    setClosed(true);
-                } catch (PropertyVetoException propertyVetoException) {
-                    propertyVetoException.printStackTrace();
-                }
+                setVisible(false);
             }
         });
 
@@ -105,8 +101,8 @@ public class StudentSectionFrame extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
 
 
-                if (!isCorrectAnswerSelected()) {
-                    pane = new JOptionPane(("Correct Answer Not Selected,Please Select"),JOptionPane.INFORMATION_MESSAGE);
+                if (!isAnswerSelected()) {
+                    pane = new JOptionPane(("Answer Not Selected,Please Select"),JOptionPane.INFORMATION_MESSAGE);
                     dialogAnswer = pane.createDialog(panel.getParent(),"");
                     dialogAnswer.setModal(false);
                     dialogAnswer.setVisible(true);
@@ -183,7 +179,7 @@ public class StudentSectionFrame extends JInternalFrame {
         }
     }
 
-    boolean isCorrectAnswerSelected(){
+    boolean isAnswerSelected(){
         return choiceOne.isSelected() || choiceTwo.isSelected() || choiceThree.isSelected() || choiceFour.isSelected();
     }
 }
