@@ -9,38 +9,51 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DisplayTests {
 
     Display display;
-    TeacherSectionFrame teacherSectionFrame;
-
 
     @BeforeEach
     void initialise(){
         display = new Display();
     }
 
-  //  @Test
+    @DisplayName("Test clicking teacher button shows a new teacher frame")
+    @Test
     void teacherButtonTest(){
         display.teacherButton.doClick();
         assertTrue(display.newTeacherFrame.isVisible());
     }
-
-   // @Test
+    
+    @DisplayName("Test clicking student button shows a new student frame" +
+                "with questions set in teacher frame")
+    @Test
     void studentButtonTest(){
-        teacherSectionFrame = new TeacherSectionFrame();
-        teacherSectionFrame.questionCount += 1;
-        teacherSectionFrame.questionArray.add("Test1");
-        teacherSectionFrame.answerArray1.add("Test1");
-        teacherSectionFrame.answerArray2.add("Test1");
-        teacherSectionFrame.answerArray3.add("Test1");
-        teacherSectionFrame.answerArray4.add("Test1");
-        teacherSectionFrame.choiceOne.setSelected(true);
+
+        display.teacherButton.doClick();
+        display.newTeacherFrame.questionText.setText("Test1");
+        display.newTeacherFrame.answer1Text.setText("Test1");
+        display.newTeacherFrame.answer2Text.setText("Test1");
+        display.newTeacherFrame.answer3Text.setText("Test1");
+        display.newTeacherFrame.answer4Text.setText("Test1");
+        display.newTeacherFrame.choiceOne.setSelected(true);
+        display.newTeacherFrame.submitButton.doClick();
+
         display.studentButton.doClick();
         assertTrue(display.newStudentFrame.isVisible());
     }
 
-    //@Test
+    @DisplayName("Test clicking student button shows a new student frame" +
+                "without questions set in teacher frame")
+    @Test
+    void noQuestionsSetTest(){
+        display.studentButton.doClick();
+        assertTrue(display.noQuestionPane.isVisible());
+        display.dialog.setVisible(false);
+    }
+
+    @DisplayName("Test exit button closes the desktop pane")
+    @Test
     void exitButtonTest(){
         display.exitButton.doClick();
-        //assertTrue(display.newFrame.isVisible());
+        assertFalse(display.isVisible());
     }
 
 }
