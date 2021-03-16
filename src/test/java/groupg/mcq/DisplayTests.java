@@ -10,21 +10,21 @@ public class DisplayTests {
 
     Display display;
 
-    @BeforeEach
+   // @BeforeEach
     void initialise(){
         display = new Display();
     }
 
-    @DisplayName("Test clicking teacher button shows a new teacher frame")
-    @Test
+    //@DisplayName("Test clicking teacher button shows a new teacher frame")
+  //  @Test
     void teacherButtonTest(){
         display.teacherButton.doClick();
         assertTrue(display.newTeacherFrame.isVisible());
     }
 
-    @DisplayName("Test clicking student button shows a new student frame" +
-                "with questions set in teacher frame")
-    @Test
+  //  @DisplayName("Test clicking student button shows a new student frame" +
+             //   "with questions set in teacher frame")
+   // @Test
     void studentButtonTest(){
 
         display.teacherButton.doClick();
@@ -40,17 +40,17 @@ public class DisplayTests {
         assertTrue(display.newStudentFrame.isVisible());
     }
 
-    @DisplayName("Test clicking student button shows a new student frame" +
-                "without questions set in teacher frame")
-    @Test
+   // @DisplayName("Test clicking student button shows a new student frame" +
+          //      "without questions set in teacher frame")
+ //   @Test
     void noQuestionsSetTest(){
         display.studentButton.doClick();
         assertTrue(display.noQuestionPane.isVisible());
         display.dialog.setVisible(false);
     }
 
-    @DisplayName("Test exit button closes the desktop pane")
-    @Test
+  //  @DisplayName("Test exit button closes the desktop pane")
+  //  @Test
     void exitButtonTest(){
         display.exitButton.doClick();
         assertFalse(display.isVisible());
