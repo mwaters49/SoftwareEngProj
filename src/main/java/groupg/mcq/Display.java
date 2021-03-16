@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyVetoException;
 
 public class Display extends JFrame {
 
     JDesktopPane mainDesktop;
+    JOptionPane noQuestionPane;
+    JDialog dialog;
     JToolBar toolBar = new JToolBar();
 
     JButton teacherButton = new JButton("Teacher Section");
@@ -19,7 +22,6 @@ public class Display extends JFrame {
 
     public Display(){
         mainDesktop = new JDesktopPane();
-
 
         toolBar.add(teacherButton);
         toolBar.addSeparator();
@@ -41,9 +43,7 @@ public class Display extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newTeacherFrame = new TeacherSectionFrame();
-
                 mainDesktop.add(newTeacherFrame);
-
                 newTeacherFrame.setVisible(true);
             }
         });
@@ -51,21 +51,15 @@ public class Display extends JFrame {
         studentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
                 if (TeacherSectionFrame.questionCount > 0) {
-
-                    try {
-                        newStudentFrame = new StudentSectionFrame();
-                    } catch (PropertyVetoException propertyVetoException) {
-                        propertyVetoException.printStackTrace();
-                    }
-
+                    newStudentFrame = new StudentSectionFrame();
                     mainDesktop.add(newStudentFrame);
                     newStudentFrame.setVisible(true);
-
                 } else {
-                    JOptionPane.showMessageDialog(mainDesktop, "Teacher has not set a question");
+                    noQuestionPane = new JOptionPane("Teacher has not set a question", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noQuestionPane.createDialog(mainDesktop, "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
                 }
             }
         });
@@ -73,7 +67,7 @@ public class Display extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               System.exit(0);
+                setVisible(false);
             }
         });
     }
