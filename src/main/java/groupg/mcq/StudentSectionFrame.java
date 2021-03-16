@@ -31,7 +31,7 @@ public class StudentSectionFrame extends JInternalFrame {
     ArrayList<String> correctAnswer = new ArrayList<String>();
 
 
-    public StudentSectionFrame() throws PropertyVetoException {
+    public StudentSectionFrame() {
         super("Student Section", false, true, false, true);
 
         setSize(350, 350);
@@ -116,11 +116,7 @@ public class StudentSectionFrame extends JInternalFrame {
                         answer3Text.setText(teacherSectionFrame.getAnswer3(buttonCount));
                         answer4Text.setText(teacherSectionFrame.getAnswer4(buttonCount));
                     } else {
-                        try {
-                            setClosed(true);
-                        } catch (PropertyVetoException propertyVetoException) {
-                            propertyVetoException.printStackTrace();
-                        }
+                        setVisible(false);
                     }
 
                     studentAnswerCheck();
