@@ -23,7 +23,7 @@ public class DisplayTests {
         assertTrue(display.newTeacherFrame.isVisible());
     }
 
-    @Test
+   // @Test
     void studentButtonTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         teacherSectionFrame.questionCount += 1;

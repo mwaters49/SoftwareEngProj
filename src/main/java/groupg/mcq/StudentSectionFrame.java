@@ -10,6 +10,8 @@ public class StudentSectionFrame extends JInternalFrame {
 
 
     TeacherSectionFrame teacherSectionFrame = new TeacherSectionFrame();
+    JOptionPane pane = new JOptionPane();
+    JDialog dialog,dialogAnswer = new JDialog();
 
     JButton nextButton = new JButton("Next");
     JButton endButton = new JButton("EndQuiz");
@@ -104,7 +106,10 @@ public class StudentSectionFrame extends JInternalFrame {
 
 
                 if (!isCorrectAnswerSelected()) {
-                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected,Please Select");
+                    pane = new JOptionPane(("Correct Answer Not Selected,Please Select"),JOptionPane.INFORMATION_MESSAGE);
+                    dialogAnswer = pane.createDialog(panel.getParent(),"");
+                    dialogAnswer.setModal(false);
+                    dialogAnswer.setVisible(true);
                 }else{
 
                     buttonCount++;
@@ -144,8 +149,11 @@ public class StudentSectionFrame extends JInternalFrame {
                     }
 
                     if (nextButton.getText().equals("End Exam")) {
-                        JOptionPane.showMessageDialog(panel, "You Scored: " + score + " out of " + teacherSectionFrame.questionCount
-                                + "\n" + "Percentage: " + ((float) score / (float) teacherSectionFrame.questionCount) * 100 + "%");
+                         pane = new JOptionPane( "You Scored: " + score + " out of " + teacherSectionFrame.questionCount
+                                + "\n" + "Percentage: " + ((float) score / (float) teacherSectionFrame.questionCount) * 100 + "%",JOptionPane.INFORMATION_MESSAGE);
+                         dialog = pane.createDialog(panel.getParent(),"");
+                         dialog.setModal(false);
+                         dialog.setVisible(true);
                     }
 
                     if (buttonCount == teacherSectionFrame.questionCount - 1) {
