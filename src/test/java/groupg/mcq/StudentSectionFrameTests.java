@@ -28,15 +28,15 @@ public class StudentSectionFrameTests {
         studentSectionFrame = new StudentSectionFrame();
     }
 
-    @DisplayName("Testing endButton in Student Test")
-    @Test
+    //@DisplayName("Testing endButton in Student Test")
+    //@Test
     void endButtonTest() {      //PASSES
         studentSectionFrame.endButton.doClick();
         assertFalse(studentSectionFrame.isVisible());
     }
 
-    @DisplayName("Testing initialFrameTest")
-    @Test
+   // @DisplayName("Testing initialFrameTest")
+   // @Test
     void initialFrameTest(){        //PASSES
         studentSectionFrame.choiceOne.setSelected(true);
 
@@ -47,8 +47,8 @@ public class StudentSectionFrameTests {
         assertEquals(studentSectionFrame.answer4Text.getText(),teacherSectionFrame.getAnswer4(studentSectionFrame.buttonCount));
     }
 
-    @DisplayName("Testing nextButtonTest")
-    @Test
+    //@DisplayName("Testing nextButtonTest")
+    //@Test
     void nextButtonTest(){      //PASSES
         teacherSectionFrame.questionText.setText("Test2");
         teacherSectionFrame.answer1Text.setText("Test2");
@@ -71,37 +71,58 @@ public class StudentSectionFrameTests {
         //studentSectionFrame.dialog.setVisible(false);
     }
 
-   // @DisplayName("Testing correct Answer")
- //   @Test
-    void correctAnswerTest(){       /*FAILS*/
+    @DisplayName("Testing correct Answer")
+    @Test
+    void correctAnswerTest(){       /*Passes*/
+        teacherSectionFrame.questionText.setText("Test2");
+        teacherSectionFrame.answer1Text.setText("Test2");
+        teacherSectionFrame.answer2Text.setText("Test2");
+        teacherSectionFrame.answer3Text.setText("Test2");
+        teacherSectionFrame.answer4Text.setText("Test2");
+        teacherSectionFrame.choiceOne.setSelected(true);
+        teacherSectionFrame.submitButton.doClick();
+
         teacherSectionFrame.questionText.setText("Test3");
         teacherSectionFrame.answer1Text.setText("Test3");
         teacherSectionFrame.answer2Text.setText("Test3");
         teacherSectionFrame.answer3Text.setText("Test3");
         teacherSectionFrame.answer4Text.setText("Test3");
-
         teacherSectionFrame.choiceOne.setSelected(true);
         teacherSectionFrame.submitButton.doClick();
 
-        if(studentSectionFrame.choiceOne.isSelected()){
-            studentSectionFrame.correctAnswerCount = 1;
-        }
+        teacherSectionFrame.questionText.setText("Test4");
+        teacherSectionFrame.answer1Text.setText("Test4");
+        teacherSectionFrame.answer2Text.setText("Test4");
+        teacherSectionFrame.answer3Text.setText("Test4");
+        teacherSectionFrame.answer4Text.setText("Test4");
+        teacherSectionFrame.choiceOne.setSelected(true);
+        teacherSectionFrame.submitButton.doClick();
 
-        if (studentSectionFrame.correctAnswerCount == 1) {
-            studentSectionFrame.correctAnswer.add(studentSectionFrame.answer1Text.getText());
-        }
-
+        studentSectionFrame.choiceOne.setSelected(true);
+        studentSectionFrame.nextButton.doClick();
         assertEquals(studentSectionFrame.answer1Text.getText(), studentSectionFrame.correctAnswer.get(0));
+
+        studentSectionFrame.choiceTwo.setSelected(true);
+        studentSectionFrame.nextButton.doClick();
+        assertEquals(studentSectionFrame.answer2Text.getText(), studentSectionFrame.correctAnswer.get(1));
+
+        studentSectionFrame.choiceThree.setSelected(true);
+        studentSectionFrame.nextButton.doClick();
+        assertEquals(studentSectionFrame.answer3Text.getText(), studentSectionFrame.correctAnswer.get(2));
+
+        studentSectionFrame.choiceFour.setSelected(true);
+        studentSectionFrame.nextButton.doClick();
+        assertEquals(studentSectionFrame.answer4Text.getText(), studentSectionFrame.correctAnswer.get(3));
     }
 
-     @DisplayName("Testing endExamTest")
-    @Test
+    // @DisplayName("Testing endExamTest")
+    //@Test
     void endExamTest() {        //PASSES
         assertEquals(teacherSectionFrame.getQuestion(studentSectionFrame.buttonCount).equals("endExam"),studentSectionFrame.isClosed());
     }
 
-     @DisplayName("Testing correctAnswerSelectedTest")
-     @Test
+    // @DisplayName("Testing correctAnswerSelectedTest")
+   //  @Test
     void correctAnswerSelectedTest() {      //PASSES
         assertEquals(studentSectionFrame.isAnswerSelected(), studentSectionFrame.dialogAnswer.isVisible());
     }
@@ -114,8 +135,8 @@ public class StudentSectionFrameTests {
                 (studentSectionFrame.score + 1));
     }
 
-    @DisplayName("Testing buttonSetTextTest")
-    @Test      //PASSES
+    //@DisplayName("Testing buttonSetTextTest")
+   // @Test      //PASSES
     void buttonSetTextTest() {
         assertEquals(studentSectionFrame.buttonCount == teacherSectionFrame.questionCount - 1,studentSectionFrame.nextButton.getText().equals("End Exam"));
     }
