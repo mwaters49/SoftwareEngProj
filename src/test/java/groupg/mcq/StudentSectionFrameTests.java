@@ -169,7 +169,7 @@ public class StudentSectionFrameTests {
         studentSectionFrame.nextButton.doClick();
         assertFalse(studentSectionFrame.dialogAnswer.isVisible());
     }
-    
+
     @DisplayName("Testing buttonSetTextTest")
     @Test      //PASSES
     void buttonSetTextTest() {
