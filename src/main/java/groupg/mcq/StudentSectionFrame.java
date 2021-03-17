@@ -87,6 +87,7 @@ public class StudentSectionFrame extends JInternalFrame {
 
         if (buttonCount == teacherSectionFrame.questionCount - 1) {
             nextButton.setText("End Exam");
+            System.out.println(nextButton.getText());
         }
 
         endButton.addActionListener(new ActionListener() {
@@ -99,6 +100,7 @@ public class StudentSectionFrame extends JInternalFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(nextButton.getText());
 
 
                 if (!isAnswerSelected()) {
@@ -134,6 +136,13 @@ public class StudentSectionFrame extends JInternalFrame {
                         case 4:
                             correctAnswer.add(answer4Text.getText());
                             break;
+                        default:
+                            pane = new JOptionPane(("Answer Not Selected,Please Select"),JOptionPane.INFORMATION_MESSAGE);
+                            dialogAnswer = pane.createDialog(panel.getParent(),"");
+                            dialogAnswer.setModal(false);
+                            dialogAnswer.setVisible(true);
+                            break;
+
                     }
 
                     if (correctAnswer.get(buttonCount - 1).equals(teacherSectionFrame.correctAnswer.get(buttonCount - 1))) {
@@ -150,6 +159,7 @@ public class StudentSectionFrame extends JInternalFrame {
 
                     if (buttonCount == teacherSectionFrame.questionCount - 1) {
                         nextButton.setText("End Exam");
+                        System.out.println(nextButton.getText());
                     }
 
                     buttonGroup.clearSelection();
@@ -176,6 +186,9 @@ public class StudentSectionFrame extends JInternalFrame {
         }
         else if(choiceFour.isSelected()){
             correctAnswerCount = 4;
+        }
+        else{
+            correctAnswerCount = 0;
         }
     }
 
