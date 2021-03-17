@@ -128,7 +128,15 @@ public class StudentSectionFrameTests {
         assertEquals(studentSectionFrame.answer4Text.getText(), studentSectionFrame.correctAnswer.get(3));
     }
 
-    @DisplayName("Testing endExamTest")
+    @DisplayName("Test studentAnswerCheck with error in selection")
+    @Test
+    void studentAnswerCheckWithNoSelectionTest(){
+        studentSectionFrame = new StudentSectionFrame();
+        studentSectionFrame.studentAnswerCheck();
+        assertTrue(studentSectionFrame.dialogAnswer.isVisible());
+    }
+
+    @DisplayName("Testing exam ends after final question")
     @Test
     void endExamTest() {        //PASSES
 
