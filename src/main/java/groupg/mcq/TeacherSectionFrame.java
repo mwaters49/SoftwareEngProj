@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TeacherSectionFrame extends JInternalFrame {
+    JOptionPane noQuestionPane;
+    JOptionPane noClearPane;
+
+    JDialog dialog;
 
     JButton submitButton = new JButton("Submit");
     JButton cancelButton = new JButton("Cancel");
@@ -92,12 +96,27 @@ public class TeacherSectionFrame extends JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isQuestionFilled()) {
-                    JOptionPane.showMessageDialog(panel, "Question Not Filled");
-                } else if (!isAnswersFilled()) {
-                    JOptionPane.showMessageDialog(panel, "Answers Not Filled");
-                } else if (!isCorrectAnswerSelected()) {
-                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected");
-                } else {
+//                    JOptionPane.showMessageDialog(panel, "Question Not Filled");
+                    noQuestionPane = new JOptionPane("Question Not Filled", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                } else if (!isAnswersFilled())
+                {
+//                    JOptionPane.showMessageDialog(panel, "Answers Not Filled");
+                    noQuestionPane = new JOptionPane("Answers Not Filled", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                } else if (!isCorrectAnswerSelected())
+                {
+//                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected");
+                    noQuestionPane = new JOptionPane("Correct Answer Not Selected", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                } else
+                    {
                     setAnswers(answer1Text.getText(), answer2Text.getText(), answer3Text.getText(), answer4Text.getText());
                     setQuestion(questionText.getText());
 
@@ -156,12 +175,25 @@ public class TeacherSectionFrame extends JInternalFrame {
                     correctAnswerCount = 0;
 
                     if (questionArray.isEmpty() && correctAnswer.isEmpty()) {
-                        JOptionPane.showMessageDialog(panel, "All questions & answers have been cleared");
+//                        JOptionPane.showMessageDialog(panel, "All questions & answers have been cleared");
+                        noClearPane = new JOptionPane("All questions & answers have been cleared", JOptionPane.INFORMATION_MESSAGE);
+                        dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                        dialog.setModal(false);
+                        dialog.setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(panel, "An error occurred while clearing, Try Again");
+//                        JOptionPane.showMessageDialog(panel, "An error occurred while clearing, Try Again");
+                        noClearPane = new JOptionPane("An error occurred while clearing, Try Again", JOptionPane.INFORMATION_MESSAGE);
+                        dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                        dialog.setModal(false);
+                        dialog.setVisible(true);
                     }
+
                 }else{
-                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
+//                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
+                    noClearPane = new JOptionPane("No more questions to clear!?!", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
                 }
             }
         });
