@@ -125,7 +125,6 @@ public class TeacherSectionFrame extends JInternalFrame {
                     teacherAnswerCheck();
                     switch (correctAnswerCount) {
                         case 1:
-                            System.out.println(answer1Text.getText());
                             correctAnswer.add(answer1Text.getText());
                             break;
                         case 2:
