@@ -10,6 +10,8 @@ public class StudentSectionFrame extends JInternalFrame {
 
 
     TeacherSectionFrame teacherSectionFrame = new TeacherSectionFrame();
+    JOptionPane pane = new JOptionPane();
+    JDialog dialog,dialogAnswer = new JDialog();
 
     JButton nextButton = new JButton("Next");
     JButton endButton = new JButton("EndQuiz");
@@ -90,21 +92,18 @@ public class StudentSectionFrame extends JInternalFrame {
         endButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    setClosed(true);
-                } catch (PropertyVetoException propertyVetoException) {
-                    propertyVetoException.printStackTrace();
-                }
+                setVisible(false);
             }
         });
 
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
-                if (!isCorrectAnswerSelected()) {
-                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected,Please Select");
+                if (!isAnswerSelected()) {
+                    pane = new JOptionPane(("Answer Not Selected,Please Select"),JOptionPane.INFORMATION_MESSAGE);
+                    dialogAnswer = pane.createDialog(panel.getParent(),"");
+                    dialogAnswer.setModal(false);
+                    dialogAnswer.setVisible(true);
                 }else{
 
                     buttonCount++;
@@ -120,28 +119,17 @@ public class StudentSectionFrame extends JInternalFrame {
                     }
 
                     studentAnswerCheck();
-                    switch (correctAnswerCount) {
-                        case 1:
-                            correctAnswer.add(answer1Text.getText());
-                            break;
-                        case 2:
-                            correctAnswer.add(answer2Text.getText());
-                            break;
-                        case 3:
-                            correctAnswer.add(answer3Text.getText());
-                            break;
-                        case 4:
-                            correctAnswer.add(answer4Text.getText());
-                            break;
-                    }
 
                     if (correctAnswer.get(buttonCount - 1).equals(teacherSectionFrame.correctAnswer.get(buttonCount - 1))) {
                         score++;
                     }
 
                     if (nextButton.getText().equals("End Exam")) {
-                        JOptionPane.showMessageDialog(panel, "You Scored: " + score + " out of " + teacherSectionFrame.questionCount
-                                + "\n" + "Percentage: " + ((float) score / (float) teacherSectionFrame.questionCount) * 100 + "%");
+                         pane = new JOptionPane( "You Scored: " + score + " out of " + teacherSectionFrame.questionCount
+                                + "\n" + "Percentage: " + ((float) score / (float) teacherSectionFrame.questionCount) * 100 + "%",JOptionPane.INFORMATION_MESSAGE);
+                         dialog = pane.createDialog(panel.getParent(),"");
+                         dialog.setModal(false);
+                         dialog.setVisible(true);
                     }
 
                     if (buttonCount == teacherSectionFrame.questionCount - 1) {
@@ -160,22 +148,27 @@ public class StudentSectionFrame extends JInternalFrame {
     }
 
     void studentAnswerCheck(){
-
         if(choiceOne.isSelected()){
-            correctAnswerCount = 1;
+            correctAnswer.add(answer1Text.getText());
         }
         else if(choiceTwo.isSelected()){
-            correctAnswerCount = 2;
+            correctAnswer.add(answer2Text.getText());
         }
         else if(choiceThree.isSelected()){
-            correctAnswerCount = 3;
+            correctAnswer.add(answer3Text.getText());
         }
         else if(choiceFour.isSelected()){
-            correctAnswerCount = 4;
+            correctAnswer.add(answer4Text.getText());
+        }
+        else{
+            pane = new JOptionPane(("Answer Not Selected,Please Select"),JOptionPane.INFORMATION_MESSAGE);
+            dialogAnswer = pane.createDialog(panel.getParent(),"");
+            dialogAnswer.setModal(false);
+            dialogAnswer.setVisible(true);
         }
     }
 
-    boolean isCorrectAnswerSelected(){
+    boolean isAnswerSelected(){
         return choiceOne.isSelected() || choiceTwo.isSelected() || choiceThree.isSelected() || choiceFour.isSelected();
     }
 }
