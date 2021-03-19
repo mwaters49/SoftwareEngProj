@@ -10,12 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TeacherSectionFrameTests {
 
-    Display display;
     TeacherSectionFrame teacherSectionFrame;
 
     @BeforeEach
     void initialise(){
-        display = new Display();
         TeacherSectionFrame.questionArray.clear();
         TeacherSectionFrame.correctAnswer.clear();
         TeacherSectionFrame.answerArray1.clear();
@@ -27,6 +25,7 @@ public class TeacherSectionFrameTests {
     }
 
       @Test
+      @DisplayName("Testing questions are set")
     void questionSetTest(){
           teacherSectionFrame = new TeacherSectionFrame();
           JTextField questionSet = teacherSectionFrame.questionText;
@@ -36,7 +35,9 @@ public class TeacherSectionFrameTests {
         assertEquals("Testing",result);
 
     }
+
     @Test
+    @DisplayName("Testing questions are added to array")
     void questionArrayTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         JTextField questionSet = teacherSectionFrame.questionText;
@@ -52,12 +53,10 @@ public class TeacherSectionFrameTests {
         String arrayindexMessage = teacherSectionFrame.questionArray.get(0);
         assertEquals(1,arraySize);
         assertEquals("Testing",arrayindexMessage);
-
-
-
     }
 
     @Test
+    @DisplayName("Testing answers are set")
     void answerSetTest(){
 
         teacherSectionFrame = new TeacherSectionFrame();
@@ -92,121 +91,29 @@ public class TeacherSectionFrameTests {
 
     }
 
-    @ Test
-    void radioChoiceOneTest () {
-        teacherSectionFrame = new TeacherSectionFrame();
-        JTextField questionSet = teacherSectionFrame.questionText;
-        questionSet.setText("Testing");
-        teacherSectionFrame.answer1Text.setText("question1");
-        teacherSectionFrame.answer2Text.setText("question2");
-        teacherSectionFrame.answer3Text.setText("question3");
-        teacherSectionFrame.answer4Text.setText("question4");
-        teacherSectionFrame.choiceOne.setSelected(true);
-
-//        checking if Radio button is selected
-        boolean isSelected = teacherSectionFrame.isCorrectAnswerSelected();
-        assertTrue(isSelected);
-        teacherSectionFrame.submitButton.doClick();
-
-//        checking  Radio button 1 is checked
-        int choosenRadioButton = TeacherSectionFrame.correctAnswerCount;
-        assertEquals(1,choosenRadioButton);
-
-
-
-    }
-
-    @ Test
-    void radioChoiceTwoTest () {
-        teacherSectionFrame = new TeacherSectionFrame();
-        JTextField questionSet = teacherSectionFrame.questionText;
-        questionSet.setText("Testing");
-        teacherSectionFrame.answer1Text.setText("question1");
-        teacherSectionFrame.answer2Text.setText("question2");
-        teacherSectionFrame.answer3Text.setText("question3");
-        teacherSectionFrame.answer4Text.setText("question4");
-        teacherSectionFrame.choiceTwo.setSelected(true);
-
-//        checking if Radio button is selected
-        boolean isSelected = teacherSectionFrame.isCorrectAnswerSelected();
-        assertTrue(isSelected);
-        teacherSectionFrame.submitButton.doClick();
-
-//        checking if the  Radio button 2 is checked
-        int choosenRadioButton = TeacherSectionFrame.correctAnswerCount;
-        assertEquals(2,choosenRadioButton);
-
-
-
-    }
-
-    @ Test
-    void radioChoiceThreeTest () {
-        teacherSectionFrame = new TeacherSectionFrame();
-        JTextField questionSet = teacherSectionFrame.questionText;
-        questionSet.setText("Testing");
-        teacherSectionFrame.answer1Text.setText("question1");
-        teacherSectionFrame.answer2Text.setText("question2");
-        teacherSectionFrame.answer3Text.setText("question3");
-        teacherSectionFrame.answer4Text.setText("question4");
-        teacherSectionFrame.choiceThree.setSelected(true);
-
-//        checking if Radio button is selected
-        boolean isSelected = teacherSectionFrame.isCorrectAnswerSelected();
-        assertTrue(isSelected);
-        teacherSectionFrame.submitButton.doClick();
-
-//        checking if the  Radio button 3 is checked
-        int choosenRadioButton = TeacherSectionFrame.correctAnswerCount;
-        assertEquals(3,choosenRadioButton);
-
-
-
-    }
-
-    @ Test
-    void radioChoiceFourTest ()
-    {
-        teacherSectionFrame = new TeacherSectionFrame();
-        JTextField questionSet = teacherSectionFrame.questionText;
-        questionSet.setText("Testing");
-        teacherSectionFrame.answer1Text.setText("question1");
-        teacherSectionFrame.answer2Text.setText("question2");
-        teacherSectionFrame.answer3Text.setText("question3");
-        teacherSectionFrame.answer4Text.setText("question4");
-        teacherSectionFrame.choiceFour.setSelected(true);
-
-//        checking if Radio button is selected
-        boolean isSelected = teacherSectionFrame.isCorrectAnswerSelected();
-        assertTrue(isSelected);
-        teacherSectionFrame.submitButton.doClick();
-
-//        checking if the  Radio button 4 is checked
-        int choosenRadioButton = TeacherSectionFrame.correctAnswerCount;
-        assertEquals(4,choosenRadioButton);
-
-    }
-
     @Test
+    @DisplayName("Testing no question set failure")
     void submitButtonFailOneTest(){
 
         teacherSectionFrame = new TeacherSectionFrame();
         teacherSectionFrame.submitButton.doClick();
-        assertTrue(teacherSectionFrame.noQuestionPane.isVisible());
+        assertTrue(teacherSectionFrame.pane.isVisible());
         teacherSectionFrame.dialog.setVisible(false);
     }
 
     @Test
+    @DisplayName("Testing no answers set failure")
     void submitButtonFailTwoTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         JTextField questionSet = teacherSectionFrame.questionText;
         questionSet.setText("Testing");
         teacherSectionFrame.submitButton.doClick();
-        assertTrue(teacherSectionFrame.noQuestionPane.isVisible());
+        assertTrue(teacherSectionFrame.pane.isVisible());
         teacherSectionFrame.dialog.setVisible(false);
     }
 
     @Test
+    @DisplayName("Testing no correct answer selected failure")
     void submitButtonFailThreeTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         JTextField questionSet = teacherSectionFrame.questionText;
@@ -216,36 +123,13 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.answer3Text.setText("question3");
         teacherSectionFrame.answer4Text.setText("question4");
         teacherSectionFrame.submitButton.doClick();
-        assertTrue(teacherSectionFrame.noQuestionPane.isVisible());
-        teacherSectionFrame.dialog.setVisible(false);
-    }
-
-//    @Test
-    void submitButtonPassTest(){
-        teacherSectionFrame = new TeacherSectionFrame();
-        JTextField questionSet = teacherSectionFrame.questionText;
-        questionSet.setText("Testing");
-        teacherSectionFrame.answer1Text.setText("question1");
-        teacherSectionFrame.answer2Text.setText("question2");
-        teacherSectionFrame.answer3Text.setText("question3");
-        teacherSectionFrame.answer4Text.setText("question4");
-        teacherSectionFrame.choiceFour.setSelected(true);
-        teacherSectionFrame.submitButton.doClick();
-        assertFalse(teacherSectionFrame.noQuestionPane.isVisible());
+        assertTrue(teacherSectionFrame.pane.isVisible());
         teacherSectionFrame.dialog.setVisible(false);
     }
 
     @Test
-    void clearButtonFailTest(){
-
-        teacherSectionFrame = new TeacherSectionFrame();
-        teacherSectionFrame.clearAllButton.doClick();
-        assertTrue(teacherSectionFrame.noClearPane.isVisible());
-        teacherSectionFrame.dialog.setVisible(false);
-    }
-
-    @Test
-    void clearButtonPassTest(){
+    @DisplayName("Testing clear all button")
+    void clearAllButtonPassTest(){
 
         teacherSectionFrame = new TeacherSectionFrame();
         JTextField questionSet = teacherSectionFrame.questionText;
@@ -264,5 +148,127 @@ public class TeacherSectionFrameTests {
 
         int arraySize = teacherSectionFrame.questionArray.size();
         assertEquals(0,arraySize);
+    }
+
+    @Test
+    @DisplayName("Testing clear last button")
+    void clearLastButtonPassTest(){
+
+        teacherSectionFrame = new TeacherSectionFrame();
+        JTextField questionSet = teacherSectionFrame.questionText;
+        questionSet.setText("Testing");
+        teacherSectionFrame.answer1Text.setText("question1");
+        teacherSectionFrame.answer2Text.setText("question2");
+        teacherSectionFrame.answer3Text.setText("question3");
+        teacherSectionFrame.answer4Text.setText("question4");
+        teacherSectionFrame.choiceOne.setSelected(true);
+        teacherSectionFrame.submitButton.doClick();
+
+
+        int arraySizeBefore = teacherSectionFrame.questionArray.size();
+        teacherSectionFrame.clearLastButton.doClick();
+        int arraySizeAfter = teacherSectionFrame.questionArray.size();
+        assertEquals(arraySizeBefore - 1, arraySizeAfter);
+    }
+
+    @Test
+    @DisplayName("Testing no questions to clear")
+    void noQuestionToClearTest(){
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.clearLastButton.doClick();
+        assertTrue(teacherSectionFrame.dialog.isVisible());
+
+        teacherSectionFrame.clearAllButton.doClick();
+        assertTrue(teacherSectionFrame.dialog.isVisible());
+    }
+
+    @DisplayName("Testing endButton in teacher Test")
+    @Test
+    void endButtonTest() {      //PASSES
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.cancelButton.doClick();
+        assertFalse(teacherSectionFrame.isVisible());
+    }
+
+    @DisplayName("Testing correct Answer")
+    @Test
+    void correctAnswerTest(){       /*Passes*/
+        teacherSectionFrame = new TeacherSectionFrame();
+
+        teacherSectionFrame.questionText.setText("Test1");
+        teacherSectionFrame.answer1Text.setText("Test1");
+        teacherSectionFrame.answer2Text.setText("Test1");
+        teacherSectionFrame.answer3Text.setText("Test1");
+        teacherSectionFrame.answer4Text.setText("Test1");
+        teacherSectionFrame.choiceOne.setSelected(true);
+        String answer1Check = teacherSectionFrame.answer1Text.getText();
+        teacherSectionFrame.submitButton.doClick();
+        assertEquals(answer1Check, teacherSectionFrame.correctAnswer.get(0));
+
+        teacherSectionFrame.questionText.setText("Test2");
+        teacherSectionFrame.answer1Text.setText("Test2");
+        teacherSectionFrame.answer2Text.setText("Test2");
+        teacherSectionFrame.answer3Text.setText("Test2");
+        teacherSectionFrame.answer4Text.setText("Test2");
+        teacherSectionFrame.choiceTwo.setSelected(true);
+        String answer2Check = teacherSectionFrame.answer2Text.getText();
+        teacherSectionFrame.submitButton.doClick();
+        assertEquals(answer2Check, teacherSectionFrame.correctAnswer.get(1));
+
+        teacherSectionFrame.questionText.setText("Test3");
+        teacherSectionFrame.answer1Text.setText("Test3");
+        teacherSectionFrame.answer2Text.setText("Test3");
+        teacherSectionFrame.answer3Text.setText("Test3");
+        teacherSectionFrame.answer4Text.setText("Test3");
+        teacherSectionFrame.choiceThree.setSelected(true);
+        String answer3Check = teacherSectionFrame.answer3Text.getText();
+        teacherSectionFrame.submitButton.doClick();
+        assertEquals(answer3Check, teacherSectionFrame.correctAnswer.get(2));
+
+        teacherSectionFrame.questionText.setText("Test4");
+        teacherSectionFrame.answer1Text.setText("Test4");
+        teacherSectionFrame.answer2Text.setText("Test4");
+        teacherSectionFrame.answer3Text.setText("Test4");
+        teacherSectionFrame.answer4Text.setText("Test4");
+        teacherSectionFrame.choiceFour.setSelected(true);
+        String answer4Check = teacherSectionFrame.answer4Text.getText();
+        teacherSectionFrame.submitButton.doClick();
+        assertEquals(answer4Check, teacherSectionFrame.correctAnswer.get(3));
+    }
+
+    @DisplayName("Test teacherAnswerCheck with error in selection")
+    @Test
+    void teacherAnswerCheckWithNoSelectionTest(){
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.teacherAnswerCheck();
+        assertTrue(teacherSectionFrame.dialog.isVisible());
+    }
+
+    @Test
+    @DisplayName("Testing no questions to clear")
+    void isAnswersFilledTest(){
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.answer1Text.setText("Test1");
+        teacherSectionFrame.answer2Text.setText("Test1");
+        teacherSectionFrame.answer3Text.setText("Test1");
+        assertFalse(teacherSectionFrame.isAnswersFilled());
+
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.answer2Text.setText("Test1");
+        teacherSectionFrame.answer3Text.setText("Test1");
+        teacherSectionFrame.answer4Text.setText("Test1");
+        assertFalse(teacherSectionFrame.isAnswersFilled());
+
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.answer1Text.setText("Test1");
+        teacherSectionFrame.answer3Text.setText("Test1");
+        teacherSectionFrame.answer4Text.setText("Test1");
+        assertFalse(teacherSectionFrame.isAnswersFilled());
+
+        teacherSectionFrame = new TeacherSectionFrame();
+        teacherSectionFrame.answer1Text.setText("Test1");
+        teacherSectionFrame.answer2Text.setText("Test1");
+        teacherSectionFrame.answer4Text.setText("Test1");
+        assertFalse(teacherSectionFrame.isAnswersFilled());
     }
 }
