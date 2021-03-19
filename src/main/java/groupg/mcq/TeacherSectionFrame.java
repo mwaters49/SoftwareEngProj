@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TeacherSectionFrame extends JInternalFrame {
+    JOptionPane pane;
+    JOptionPane noClearPane;
+
+    JDialog dialog;
 
     JButton submitButton = new JButton("Submit");
     JButton cancelButton = new JButton("Cancel");
@@ -92,32 +96,33 @@ public class TeacherSectionFrame extends JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isQuestionFilled()) {
-                    JOptionPane.showMessageDialog(panel, "Question Not Filled");
-                } else if (!isAnswersFilled()) {
-                    JOptionPane.showMessageDialog(panel, "Answers Not Filled");
-                } else if (!isCorrectAnswerSelected()) {
-                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected");
-                } else {
+//                    JOptionPane.showMessageDialog(panel, "Question Not Filled");
+                    pane = new JOptionPane("Question Not Filled", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = pane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                } else if (!isAnswersFilled())
+                {
+//                    JOptionPane.showMessageDialog(panel, "Answers Not Filled");
+                    pane = new JOptionPane("Answers Not Filled", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = pane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                } else if (!isCorrectAnswerSelected())
+                {
+//                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected");
+                    pane = new JOptionPane("Correct Answer Not Selected", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = pane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                } else
+                    {
                     setAnswers(answer1Text.getText(), answer2Text.getText(), answer3Text.getText(), answer4Text.getText());
                     setQuestion(questionText.getText());
 
                     questionCount++;
 
                     teacherAnswerCheck();
-                    switch (correctAnswerCount) {
-                        case 1:
-                            correctAnswer.add(answer1Text.getText());
-                            break;
-                        case 2:
-                            correctAnswer.add(answer2Text.getText());
-                            break;
-                        case 3:
-                            correctAnswer.add(answer3Text.getText());
-                            break;
-                        case 4:
-                            correctAnswer.add(answer4Text.getText());
-                            break;
-                    }
 
                     questionText.setText(null);
                     answer1Text.setText(null);
@@ -133,11 +138,7 @@ public class TeacherSectionFrame extends JInternalFrame {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    setClosed(true);
-                } catch (PropertyVetoException propertyVetoException) {
-                    propertyVetoException.printStackTrace();
-                }
+                setVisible(false);
             }
         });
 
@@ -154,13 +155,16 @@ public class TeacherSectionFrame extends JInternalFrame {
                     questionCount = 0;
                     correctAnswerCount = 0;
 
-                    if (questionArray.isEmpty() && correctAnswer.isEmpty()) {
-                        JOptionPane.showMessageDialog(panel, "All questions & answers have been cleared");
-                    } else {
-                        JOptionPane.showMessageDialog(panel, "An error occurred while clearing, Try Again");
-                    }
+                    noClearPane = new JOptionPane("All questions & answers have been cleared", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
+//                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
+                    noClearPane = new JOptionPane("No more questions to clear!?!", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
                 }
             }
         });
@@ -180,13 +184,15 @@ public class TeacherSectionFrame extends JInternalFrame {
                     questionCount -= 1;
                     correctAnswerCount -= 1;
 
-                    if (questionArray.size() == (oldSize - 1)) {
-                        JOptionPane.showMessageDialog(panel, "Last question & answers have been cleared");
-                    } else {
-                        JOptionPane.showMessageDialog(panel, "An error occurred while clearing, Try Again");
-                    }
+                    noClearPane = new JOptionPane("Last question & answers have been cleared", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
+                    noClearPane = new JOptionPane("No more questions to clear!?!", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
                 }
             }
         });
@@ -229,18 +235,23 @@ public class TeacherSectionFrame extends JInternalFrame {
     }
 
     void teacherAnswerCheck(){
-
         if(choiceOne.isSelected()){
-            correctAnswerCount = 1;
+            correctAnswer.add(answer1Text.getText());
         }
         else if(choiceTwo.isSelected()){
-            correctAnswerCount = 2;
+            correctAnswer.add(answer2Text.getText());
         }
         else if(choiceThree.isSelected()){
-            correctAnswerCount = 3;
+            correctAnswer.add(answer3Text.getText());
         }
         else if(choiceFour.isSelected()){
-            correctAnswerCount = 4;
+            correctAnswer.add(answer4Text.getText());
+        }
+        else{
+            pane = new JOptionPane("Answer Not Selected", JOptionPane.INFORMATION_MESSAGE);
+            dialog = pane.createDialog(panel.getParent(), "ERROR");
+            dialog.setModal(false);
+            dialog.setVisible(true);
         }
     }
 
@@ -249,13 +260,11 @@ public class TeacherSectionFrame extends JInternalFrame {
     }
 
     boolean isAnswersFilled(){
-        return (!answer1Text.getText().equals("") && answer1Text.getText() != null) &&
-                (!answer2Text.getText().equals("") && answer2Text.getText() != null) &&
-                (!answer3Text.getText().equals("") && answer3Text.getText() != null) &&
-                (!answer4Text.getText().equals("") && answer4Text.getText() != null);
+        return (!answer1Text.getText().equals("")) && (!answer2Text.getText().equals("")) &&
+                (!answer3Text.getText().equals("")) && (!answer4Text.getText().equals(""));
     }
 
     boolean isQuestionFilled(){
-        return !questionText.getText().equals("") && questionText.getText() != null;
+        return !questionText.getText().equals("");
     }
 }
