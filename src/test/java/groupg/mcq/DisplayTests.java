@@ -1,6 +1,7 @@
 package groupg.mcq;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,21 +11,24 @@ public class DisplayTests {
 
     Display display;
 
-    //@BeforeEach
+    @Disabled
+    @BeforeEach
     void initialise(){
         display = new Display();
     }
 
+    @Disabled
     @DisplayName("Test clicking teacher button shows a new teacher frame")
-    //@Test
+    @Test
     void teacherButtonTest(){
         display.teacherButton.doClick();
         assertTrue(display.newTeacherFrame.isVisible());
     }
 
+    @Disabled
     @DisplayName("Test clicking student button shows a new student frame" +
                 "with questions set in teacher frame")
-   // @Test
+    @Test
     void studentButtonTest(){
 
         display.teacherButton.doClick();
@@ -40,17 +44,19 @@ public class DisplayTests {
         assertTrue(display.newStudentFrame.isVisible());
     }
 
+    @Disabled
     @DisplayName("Test clicking student button shows a new student frame" +
                 "without questions set in teacher frame")
-   //@Test
+    @Test
     void noQuestionsSetTest(){
         display.studentButton.doClick();
         assertTrue(display.noQuestionPane.isVisible());
         display.dialog.setVisible(false);
     }
 
+    @Disabled
     @DisplayName("Test exit button closes the desktop pane")
-   //@Test
+    @Test
     void exitButtonTest(){
         display.exitButton.doClick();
         assertFalse(display.isVisible());
