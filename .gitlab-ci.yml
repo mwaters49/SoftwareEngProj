@@ -1,14 +1,10 @@
-image: maven:3.6.3-jdk-11
+image: maven:3.6.3-jdk-9
 
 include:
   - template: Auto-DevOps.gitlab-ci.yml
-
-before_script:
-  - "Xvfb :99 &"
-  - "export DISPLAY=:99"
+  - template: Maven.gitlab-ci.yml
 
 maven_build:
   stage: build
   script:
   - "mvn clean package -Djava.awt.headless=true" 
-  - "cat target/site/jacoco/index.html"
