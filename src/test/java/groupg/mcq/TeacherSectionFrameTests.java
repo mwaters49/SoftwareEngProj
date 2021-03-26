@@ -13,9 +13,9 @@ public class TeacherSectionFrameTests {
 
     TeacherSectionFrame teacherSectionFrame;
 
-    @Disabled
-    @BeforeEach
-    void initialise(){ //broken
+    //@Disabled
+    //@BeforeEach
+    /*void initialise(){ //broken
         TeacherSectionFrame.questionArray.clear();
         TeacherSectionFrame.correctAnswer.clear();
         TeacherSectionFrame.answerArray1.clear();
@@ -24,7 +24,7 @@ public class TeacherSectionFrameTests {
         TeacherSectionFrame.answerArray4.clear();
         TeacherSectionFrame.questionCount = 0;
         TeacherSectionFrame.correctAnswerCount = 0;
-    }
+    */
 
    // @Disabled
     @Test

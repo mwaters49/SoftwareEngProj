@@ -12,7 +12,7 @@ public class StudentSectionFrameTests {
     StudentSectionFrame studentSectionFrame;
     TeacherSectionFrame teacherSectionFrame;
 
-    @BeforeEach
+    /*@BeforeEach
     @Disabled
     void initialise()  {
         TeacherSectionFrame.questionArray.clear();
@@ -34,7 +34,7 @@ public class StudentSectionFrameTests {
         teacherSectionFrame.choiceOne.setSelected(true);
 
         teacherSectionFrame.submitButton.doClick();
-    }
+    }*/
 
     @Disabled
     @DisplayName("Testing endButton in Student Test")

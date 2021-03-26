@@ -11,11 +11,11 @@ public class DisplayTests {
 
     Display display;
 
-    @Disabled
+    /*@Disabled
     @BeforeEach
     void initialise(){
         display = new Display();
-    }
+    }*/
 
     @Disabled
     @DisplayName("Test clicking teacher button shows a new teacher frame")
