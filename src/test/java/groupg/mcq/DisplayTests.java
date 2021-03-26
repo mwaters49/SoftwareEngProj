@@ -42,7 +42,7 @@ public class DisplayTests {
 
     @DisplayName("Test clicking student button shows a new student frame" +
                 "without questions set in teacher frame")
-   @Test
+   //@Test
     void noQuestionsSetTest(){
         display.studentButton.doClick();
         assertTrue(display.noQuestionPane.isVisible());
@@ -50,7 +50,7 @@ public class DisplayTests {
     }
 
     @DisplayName("Test exit button closes the desktop pane")
-   @Test
+   //@Test
     void exitButtonTest(){
         display.exitButton.doClick();
         assertFalse(display.isVisible());
