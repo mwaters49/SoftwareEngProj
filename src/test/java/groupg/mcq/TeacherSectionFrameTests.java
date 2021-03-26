@@ -91,7 +91,7 @@ public class TeacherSectionFrameTests {
 
     }
 
-    @Test
+   // @Test
     @DisplayName("Testing no question set failure")
     void submitButtonFailOneTest(){
 
@@ -101,7 +101,7 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.dialog.setVisible(false);
     }
 
-    @Test
+   // @Test
     @DisplayName("Testing no answers set failure")
     void submitButtonFailTwoTest(){
         teacherSectionFrame = new TeacherSectionFrame();
@@ -112,7 +112,7 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.dialog.setVisible(false);
     }
 
-    @Test
+   // @Test
     @DisplayName("Testing no correct answer selected failure")
     void submitButtonFailThreeTest(){
         teacherSectionFrame = new TeacherSectionFrame();
@@ -127,7 +127,7 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.dialog.setVisible(false);
     }
 
-    @Test
+    //@Test
     @DisplayName("Testing clear all button")
     void clearAllButtonPassTest(){
 
@@ -150,7 +150,7 @@ public class TeacherSectionFrameTests {
         assertEquals(0,arraySize);
     }
 
-    @Test
+    //@Test
     @DisplayName("Testing clear last button")
     void clearLastButtonPassTest(){
 
@@ -171,7 +171,7 @@ public class TeacherSectionFrameTests {
         assertEquals(arraySizeBefore - 1, arraySizeAfter);
     }
 
-    @Test
+    //@Test
     @DisplayName("Testing no questions to clear")
     void noQuestionToClearTest(){
         teacherSectionFrame = new TeacherSectionFrame();
@@ -237,7 +237,7 @@ public class TeacherSectionFrameTests {
     }
 
     @DisplayName("Test teacherAnswerCheck with error in selection")
-    @Test
+    //@Test
     void teacherAnswerCheckWithNoSelectionTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         teacherSectionFrame.teacherAnswerCheck();

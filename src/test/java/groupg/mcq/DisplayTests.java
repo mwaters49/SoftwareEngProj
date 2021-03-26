@@ -10,13 +10,13 @@ public class DisplayTests {
 
     Display display;
 
-    @BeforeEach
+    //@BeforeEach
     void initialise(){
         display = new Display();
     }
 
     @DisplayName("Test clicking teacher button shows a new teacher frame")
-    @Test
+    //@Test
     void teacherButtonTest(){
         display.teacherButton.doClick();
         assertTrue(display.newTeacherFrame.isVisible());
@@ -24,7 +24,7 @@ public class DisplayTests {
 
     @DisplayName("Test clicking student button shows a new student frame" +
                 "with questions set in teacher frame")
-    @Test
+   // @Test
     void studentButtonTest(){
 
         display.teacherButton.doClick();
