@@ -3,6 +3,10 @@ image: maven:3.6.3-jdk-11
 include:
   - template: Auto-DevOps.gitlab-ci.yml
   - template: Maven.gitlab-ci.yml
+  
+before_script:
+- "Xvfb :99 &"
+- "export DISPLAY=:99"
 
 maven_build:
   stage: build
