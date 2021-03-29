@@ -41,15 +41,13 @@ public class DisplayTests {
         assertTrue(display.newStudentFrame.isVisible());
     }
 
-    /*test commit
     @DisplayName("Test clicking student button shows a new student frame" +
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
-        display = new Display();
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
-    }*/
+    }
 
     @DisplayName("Test exit button closes the desktop pane")
     @Test
