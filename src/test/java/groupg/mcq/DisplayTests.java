@@ -41,14 +41,13 @@ public class DisplayTests {
         assertTrue(display.newStudentFrame.isVisible());
     }
 
-    /*@DisplayName("Test clicking student button shows a new student frame" +
+    @DisplayName("Test clicking student button shows a new student frame" +
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
-        display = new Display();
         display.studentButton.doClick();
-        assertTrue(display.dialog.isVisible());
-    }*/
+        assertFalse(display.mainDesktop.isFocusOwner());
+    }
 
     @DisplayName("Test exit button closes the desktop pane")
     @Test
@@ -56,5 +55,4 @@ public class DisplayTests {
         display.exitButton.doClick();
         assertFalse(display.isVisible());
     }
-
 }
