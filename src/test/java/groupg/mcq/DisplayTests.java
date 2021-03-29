@@ -45,6 +45,7 @@ public class DisplayTests {
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
+        display = new Display();
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
     }
