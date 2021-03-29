@@ -65,7 +65,7 @@ Deploy:
     - export DISPLAY=:0.0
     - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn clean compile assembly:single
     - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn org.apache.maven.plugins:maven-compiler-plugin:compile
-    - mvn install
+    - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn install
   artifacts:
     paths:
       - target/*.jar
