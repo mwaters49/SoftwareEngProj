@@ -1,10 +1,64 @@
-image: maven:3.6.3-jdk-9
+stages: 
+    - compile 
+    - build
+    - test
+    - codeCoverage
+    # - deploy
 
-include:
-  - template: Auto-DevOps.gitlab-ci.yml
-  - template: Maven.gitlab-ci.yml
 
-maven_build:
+compile: 
+  image: maven:3-jdk-8
+  stage: compile 
+  script:
+      - mvn compile
+      
+    
+maven-build:
+  image: maven:3-jdk-8
   stage: build
   script:
-  - "mvn clean package -Djava.awt.headless=true" 
+      - apt update 
+      - apt install xorg-dev libglu1-mesa libgl1-mesa-dev xvfb libxinerama1 libxcursor1 -y
+      - export DISPLAY=:0.0 
+      - mkdir target
+      - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn package -B
+  artifacts:
+    paths:
+      - target/*.jar
+
+test:
+  image: maven:3-jdk-8
+  stage:  test
+  script:
+      - apt update 
+      - apt install xorg-dev libglu1-mesa libgl1-mesa-dev xvfb libxinerama1 libxcursor1 -y
+      - export DISPLAY=:0.0
+      - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn clean test
+ 
+
+
+jacoco:
+  image: maven:3-jdk-8
+  stage: codeCoverage
+  script:
+      - apt update 
+      - apt install xorg-dev libglu1-mesa libgl1-mesa-dev xvfb libxinerama1 libxcursor1 -y
+      - export DISPLAY=:0.0 
+      # - mkdir target
+      - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn package
+      - ls -l
+      - cd  target
+      - ls -l
+  artifacts:
+    paths:
+      - target/site/jacoco/*.html
+      - target/surefire-reports/*.xml
+
+# deploy: 
+#   image: maven:3-jdk-8
+#   stage: deploy 
+#   script:
+#       - apt update 
+#       - apt install xorg-dev libglu1-mesa libgl1-mesa-dev xvfb libxinerama1 libxcursor1 -y
+#       - export DISPLAY=:0.0
+#       - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn deploy 
