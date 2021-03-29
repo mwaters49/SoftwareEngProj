@@ -47,7 +47,6 @@ public class DisplayTests {
     void noQuestionsSetTest(){
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
-        display.dialog.setVisible(false);
     }
 
     @DisplayName("Test exit button closes the desktop pane")
