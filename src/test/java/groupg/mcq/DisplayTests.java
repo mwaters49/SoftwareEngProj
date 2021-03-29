@@ -41,7 +41,8 @@ public class DisplayTests {
         assertTrue(display.newStudentFrame.isVisible());
     }
 
-    /*@DisplayName("Test clicking student button shows a new student frame" +
+    /*test commit
+    @DisplayName("Test clicking student button shows a new student frame" +
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
