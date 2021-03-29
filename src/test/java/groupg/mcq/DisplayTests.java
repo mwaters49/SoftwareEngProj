@@ -46,7 +46,7 @@ public class DisplayTests {
     @Test
     void noQuestionsSetTest(){
         display.studentButton.doClick();
-        assertTrue(display.noQuestionPane.isVisible());
+        assertTrue(display.dialog.isVisible());
         display.dialog.setVisible(false);
     }
 
