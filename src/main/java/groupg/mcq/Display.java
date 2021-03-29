@@ -11,6 +11,7 @@ public class Display extends JFrame {
     JOptionPane noQuestionPane;
     JDialog dialog;
     JToolBar toolBar = new JToolBar();
+    JPanel panel = new JPanel();
 
     JButton teacherButton = new JButton("Teacher Section");
     JButton studentButton = new JButton("Student Section");
@@ -20,6 +21,7 @@ public class Display extends JFrame {
 
     public Display(){
         mainDesktop = new JDesktopPane();
+        getContentPane().add(panel);
 
         toolBar.add(teacherButton);
         toolBar.addSeparator();
@@ -55,7 +57,7 @@ public class Display extends JFrame {
                     newStudentFrame.setVisible(true);
                 } else {
                     noQuestionPane = new JOptionPane("Teacher has not set a question", JOptionPane.INFORMATION_MESSAGE);
-                    dialog = noQuestionPane.createDialog(mainDesktop.getParent(), "ERROR");
+                    dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
                     dialog.setModal(false);
                     dialog.setVisible(true);
                 }
