@@ -12,8 +12,7 @@ public class StudentSectionFrameTests {
     StudentSectionFrame studentSectionFrame;
     TeacherSectionFrame teacherSectionFrame;
 
-    /*@BeforeEach
-    @Disabled
+    @BeforeEach
     void initialise()  {
         TeacherSectionFrame.questionArray.clear();
         TeacherSectionFrame.correctAnswer.clear();
@@ -34,9 +33,8 @@ public class StudentSectionFrameTests {
         teacherSectionFrame.choiceOne.setSelected(true);
 
         teacherSectionFrame.submitButton.doClick();
-    }*/
+    }
 
-    @Disabled
     @DisplayName("Testing endButton in Student Test")
     @Test
     void endButtonTest() {      //PASSES
@@ -46,7 +44,6 @@ public class StudentSectionFrameTests {
         assertFalse(studentSectionFrame.isVisible());
     }
 
-    @Disabled
     @DisplayName("Testing initialFrameTest")
     @Test
     void initialFrameTest(){        //PASSES
@@ -61,7 +58,6 @@ public class StudentSectionFrameTests {
         assertEquals(studentSectionFrame.answer4Text.getText(),teacherSectionFrame.getAnswer4(studentSectionFrame.buttonCount));
     }
 
-    @Disabled
     @DisplayName("Testing nextButtonTest")
     @Test
     void nextButtonTest(){      //PASSES
@@ -87,7 +83,6 @@ public class StudentSectionFrameTests {
 
     }
 
-    @Disabled
     @DisplayName("Testing correct Answer")
     @Test
     void correctAnswerTest(){       /*Passes*/
@@ -134,7 +129,6 @@ public class StudentSectionFrameTests {
         assertEquals(studentSectionFrame.answer4Text.getText(), studentSectionFrame.correctAnswer.get(3));
     }
 
-    @Disabled
     @DisplayName("Test studentAnswerCheck with error in selection")
     @Test
     void studentAnswerCheckWithNoSelectionTest(){
@@ -143,7 +137,6 @@ public class StudentSectionFrameTests {
         assertTrue(studentSectionFrame.dialogAnswer.isVisible());
     }
 
-    @Disabled
     @DisplayName("Testing exam ends after final question")
     @Test
     void endExamTest() {        //PASSES
@@ -167,7 +160,6 @@ public class StudentSectionFrameTests {
         assertFalse(studentSectionFrame.isVisible());
     }
 
-    @Disabled
     @DisplayName("Testing correctAnswerSelectedTrueTest")
     @Test
     void correctAnswerSelectedTrueTest() {//PASSES
@@ -177,7 +169,6 @@ public class StudentSectionFrameTests {
         assertTrue(studentSectionFrame.dialogAnswer.isVisible());
     }
 
-    @Disabled
     @DisplayName("Testing correctAnswerSelectedFalseTest")
     @Test
     void correctAnswerSelectedFalseTest() {//PASSES
@@ -188,7 +179,6 @@ public class StudentSectionFrameTests {
         assertFalse(studentSectionFrame.dialogAnswer.isVisible());
     }
 
-    @Disabled
     @DisplayName("Testing buttonSetTextTest")
     @Test      //PASSES
     void buttonSetTextTest() {

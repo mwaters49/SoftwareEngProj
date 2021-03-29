@@ -13,9 +13,8 @@ public class TeacherSectionFrameTests {
 
     TeacherSectionFrame teacherSectionFrame;
 
-    //@Disabled
     @BeforeEach
-    void initialise() { //broken
+    void initialise() {
         TeacherSectionFrame.questionArray.clear();
         TeacherSectionFrame.correctAnswer.clear();
         TeacherSectionFrame.answerArray1.clear();
@@ -27,7 +26,6 @@ public class TeacherSectionFrameTests {
     }
 
 
-   // @Disabled
     @Test
     @DisplayName("Testing questions are set")
     void questionSetTest(){
@@ -39,7 +37,6 @@ public class TeacherSectionFrameTests {
         assertEquals("Testing",result);
     }
 
-    //@Disabled
     @Test
     @DisplayName("Testing questions are added to array")
     void questionArrayTest(){
@@ -59,7 +56,6 @@ public class TeacherSectionFrameTests {
         assertEquals("Testing",arrayindexMessage);
     }
 
-    //@Disabled
     @Test
     @DisplayName("Testing answers are set")
     void answerSetTest(){
@@ -96,9 +92,8 @@ public class TeacherSectionFrameTests {
 
     }
 
-    //@Disabled
     @Test
-    @DisplayName("Testing no question set failure") //broken
+    @DisplayName("Testing no question set failure")
     void submitButtonFailOneTest(){
 
         teacherSectionFrame = new TeacherSectionFrame();
@@ -107,9 +102,8 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.dialog.setVisible(false);
     }
 
-    //@Disabled
     @Test
-    @DisplayName("Testing no answers set failure") //broken
+    @DisplayName("Testing no answers set failure")
     void submitButtonFailTwoTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         JTextField questionSet = teacherSectionFrame.questionText;
@@ -119,9 +113,8 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.dialog.setVisible(false);
     }
 
-    //@Disabled
     @Test
-    @DisplayName("Testing no correct answer selected failure") //broken
+    @DisplayName("Testing no correct answer selected failure")
     void submitButtonFailThreeTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         JTextField questionSet = teacherSectionFrame.questionText;
@@ -135,9 +128,8 @@ public class TeacherSectionFrameTests {
         teacherSectionFrame.dialog.setVisible(false);
     }
 
-    //@Disabled
     @Test
-    @DisplayName("Testing clear all button") //broken
+    @DisplayName("Testing clear all button")
     void clearAllButtonPassTest(){
 
         teacherSectionFrame = new TeacherSectionFrame();
@@ -159,9 +151,8 @@ public class TeacherSectionFrameTests {
         assertEquals(0,arraySize);
     }
 
-    //@Disabled
     @Test
-    @DisplayName("Testing clear last button") //broken
+    @DisplayName("Testing clear last button")
     void clearLastButtonPassTest(){
 
         teacherSectionFrame = new TeacherSectionFrame();
@@ -181,9 +172,8 @@ public class TeacherSectionFrameTests {
         assertEquals(arraySizeBefore - 1, arraySizeAfter);
     }
 
-    //@Disabled
     @Test
-    @DisplayName("Testing no questions to clear") //broken
+    @DisplayName("Testing no questions to clear")
     void noQuestionToClearTest(){
         teacherSectionFrame = new TeacherSectionFrame();
         teacherSectionFrame.clearLastButton.doClick();
@@ -193,19 +183,17 @@ public class TeacherSectionFrameTests {
         assertTrue(teacherSectionFrame.dialog.isVisible());
     }
 
-    //@Disabled
     @DisplayName("Testing endButton in teacher Test")
     @Test
-    void endButtonTest() {      //PASSES broken
+    void endButtonTest() {      //PASSES
         teacherSectionFrame = new TeacherSectionFrame();
         teacherSectionFrame.cancelButton.doClick();
         assertFalse(teacherSectionFrame.isVisible());
     }
 
-    //@Disabled
     @DisplayName("Testing correct Answer")
     @Test
-    void correctAnswerTest(){       /*Passes*/ //broken
+    void correctAnswerTest(){       /*Passes*/
         teacherSectionFrame = new TeacherSectionFrame();
 
         teacherSectionFrame.questionText.setText("Test1");
@@ -249,8 +237,7 @@ public class TeacherSectionFrameTests {
         assertEquals(answer4Check, teacherSectionFrame.correctAnswer.get(3));
     }
 
-    //@Disabled
-    @DisplayName("Test teacherAnswerCheck with error in selection") //broken
+    @DisplayName("Test teacherAnswerCheck with error in selection")
     @Test
     void teacherAnswerCheckWithNoSelectionTest(){
         teacherSectionFrame = new TeacherSectionFrame();
@@ -258,7 +245,6 @@ public class TeacherSectionFrameTests {
         assertTrue(teacherSectionFrame.dialog.isVisible());
     }
 
-    //@Disabled
     @Test
     @DisplayName("Testing no questions to clear")
     void isAnswersFilledTest(){
