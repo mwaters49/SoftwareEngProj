@@ -46,7 +46,7 @@ public class DisplayTests {
     @Test
     void noQuestionsSetTest(){
         display.studentButton.doClick();
-        assertTrue(display.dialog.isVisible());
+        assertFalse(display.mainDesktop.isFocusOwner());
     }
 
     @DisplayName("Test exit button closes the desktop pane")
@@ -55,5 +55,4 @@ public class DisplayTests {
         display.exitButton.doClick();
         assertFalse(display.isVisible());
     }
-
 }
