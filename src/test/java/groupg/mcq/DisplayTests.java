@@ -67,6 +67,7 @@ public class DisplayTests {
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
+        display.newTeacherFrame = null;
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
         //assertFalse(display.mainDesktop.isFocusOwner());
