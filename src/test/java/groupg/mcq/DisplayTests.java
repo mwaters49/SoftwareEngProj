@@ -60,17 +60,16 @@ public class DisplayTests {
         display.teacherButton.doClick();
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
-        //assertFalse(display.newStudentFrame.isVisible());
+        assertFalse(display.newStudentFrame.isVisible());
     }
 
     @DisplayName("Test clicking student button shows a new student frame" +
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
-        display.newTeacherFrame = null;
+        TeacherSectionFrame.questionCount = 0;
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
-        //assertFalse(display.mainDesktop.isFocusOwner());
     }
 
     @DisplayName("Test exit button closes the desktop pane")

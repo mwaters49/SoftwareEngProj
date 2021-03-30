@@ -59,7 +59,7 @@ public class Display extends JFrame {
         studentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //if(newTeacherFrame == null || !newTeacherFrame.isVisible()) {
+                if(newTeacherFrame == null || !newTeacherFrame.isVisible()) {
                     if (TeacherSectionFrame.questionCount > 0) {
                         newStudentFrame = new StudentSectionFrame();
                         mainDesktop.add(newStudentFrame);
@@ -71,12 +71,12 @@ public class Display extends JFrame {
                         dialog.setModal(false);
                         dialog.setVisible(true);
                     }
-                //} else{
-                //    noQuestionPane = new JOptionPane("Teacher is editing questions", JOptionPane.INFORMATION_MESSAGE);
-                //    dialog = noQuestionPane.createDialog(mainDesktop, "ERROR");
-                 //   dialog.setModal(false);
-               //     dialog.setVisible(true);
-              //  }
+                } else{
+                    noQuestionPane = new JOptionPane("Teacher is editing questions", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noQuestionPane.createDialog(mainDesktop, "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+               }
             }
         });
 
