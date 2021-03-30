@@ -1,5 +1,6 @@
 package groupg.mcq;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,15 @@ public class DisplayTests {
     void initialise(){
         display = new Display();
     }
+    @AfterEach
+    void afterTest(){
+        if(display != null) {
+            if(display.dialog != null)
+                display.dialog.dispose();
+            display.dispose();
+            display = null;
+        }
+    }
 
     @DisplayName("Test clicking teacher button shows a new teacher frame")
     @Test
@@ -22,6 +32,7 @@ public class DisplayTests {
         assertTrue(display.newTeacherFrame.isVisible());
         display.studentButton.doClick();
         assertTrue(display.dialog.isVisible());
+
     }
 
     @DisplayName("Test clicking student button shows a new student frame" +
