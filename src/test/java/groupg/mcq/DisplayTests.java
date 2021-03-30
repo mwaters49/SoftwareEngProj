@@ -20,6 +20,8 @@ public class DisplayTests {
     void teacherButtonTest(){
         display.teacherButton.doClick();
         assertTrue(display.newTeacherFrame.isVisible());
+        display.studentButton.doClick();
+        assertTrue(display.dialog.isVisible());
     }
 
     @DisplayName("Test clicking student button shows a new student frame" +
@@ -35,9 +37,19 @@ public class DisplayTests {
         display.newTeacherFrame.answer4Text.setText("Test1");
         display.newTeacherFrame.choiceOne.setSelected(true);
         display.newTeacherFrame.submitButton.doClick();
+        display.newTeacherFrame.dispose();
 
         display.studentButton.doClick();
         assertTrue(display.newStudentFrame.isVisible());
+        display.teacherButton.doClick();
+        assertTrue(display.dialog.isVisible());
+        assertFalse(display.newTeacherFrame.isVisible());
+
+        display.newStudentFrame.dispose();
+        display.teacherButton.doClick();
+        display.studentButton.doClick();
+        assertTrue(display.dialog.isVisible());
+        assertFalse(display.newStudentFrame.isVisible());
     }
 
     @DisplayName("Test clicking student button shows a new student frame" +

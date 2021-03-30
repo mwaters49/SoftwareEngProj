@@ -59,13 +59,20 @@ public class Display extends JFrame {
         studentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (TeacherSectionFrame.questionCount > 0) {
-                    newStudentFrame = new StudentSectionFrame();
-                    mainDesktop.add(newStudentFrame);
-                    newTeacherFrame.setVisible(false);
-                    newStudentFrame.setVisible(true);
-                } else {
-                    noQuestionPane = new JOptionPane("Teacher has not set a question", JOptionPane.INFORMATION_MESSAGE);
+                if(newTeacherFrame == null || !newTeacherFrame.isVisible()) {
+                    if (TeacherSectionFrame.questionCount > 0) {
+                        newStudentFrame = new StudentSectionFrame();
+                        mainDesktop.add(newStudentFrame);
+                        newTeacherFrame.setVisible(false);
+                        newStudentFrame.setVisible(true);
+                    } else {
+                        noQuestionPane = new JOptionPane("Teacher has not set a question", JOptionPane.INFORMATION_MESSAGE);
+                        dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                        dialog.setModal(false);
+                        dialog.setVisible(true);
+                    }
+                } else{
+                    noQuestionPane = new JOptionPane("Teacher is editing questions", JOptionPane.INFORMATION_MESSAGE);
                     dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
                     dialog.setModal(false);
                     dialog.setVisible(true);
