@@ -67,7 +67,7 @@ public class DisplayTests {
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
-        display.studentButton.doClick();
+        display.teacherButton.doClick();
         assertFalse(display.mainDesktop.isFocusOwner());
     }
 
