@@ -21,7 +21,7 @@ maven-build:
       - apt install xorg-dev libglu1-mesa libgl1-mesa-dev xvfb libxinerama1 libxcursor1 -y
       - export DISPLAY=:0.0 
       - mkdir target
-      - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn package -B -e -X
+      - xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" mvn package -B
   artifacts:
     paths:
       - target/*.jar
