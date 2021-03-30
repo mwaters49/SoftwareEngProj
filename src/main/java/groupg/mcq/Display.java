@@ -42,9 +42,17 @@ public class Display extends JFrame {
         teacherButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newTeacherFrame = new TeacherSectionFrame();
-                mainDesktop.add(newTeacherFrame);
-                newTeacherFrame.setVisible(true);
+                if(newStudentFrame == null || !newStudentFrame.isVisible()) {
+                    newTeacherFrame = new TeacherSectionFrame();
+                    mainDesktop.add(newTeacherFrame);
+                    newTeacherFrame.setVisible(true);
+                }
+                else{
+                    noQuestionPane = new JOptionPane("An exam is running, you cannot edit questions", JOptionPane.INFORMATION_MESSAGE);
+                    dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                    dialog.setModal(false);
+                    dialog.setVisible(true);
+                }
             }
         });
 
@@ -54,6 +62,7 @@ public class Display extends JFrame {
                 if (TeacherSectionFrame.questionCount > 0) {
                     newStudentFrame = new StudentSectionFrame();
                     mainDesktop.add(newStudentFrame);
+                    newTeacherFrame.setVisible(false);
                     newStudentFrame.setVisible(true);
                 } else {
                     noQuestionPane = new JOptionPane("Teacher has not set a question", JOptionPane.INFORMATION_MESSAGE);
