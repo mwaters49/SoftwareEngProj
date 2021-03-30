@@ -67,13 +67,13 @@ public class Display extends JFrame {
                         newStudentFrame.setVisible(true);
                     } else {
                         noQuestionPane = new JOptionPane("Teacher has not set a question", JOptionPane.INFORMATION_MESSAGE);
-                        dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                        dialog = noQuestionPane.createDialog(mainDesktop, "ERROR");
                         dialog.setModal(false);
                         dialog.setVisible(true);
                     }
                 } else{
                     noQuestionPane = new JOptionPane("Teacher is editing questions", JOptionPane.INFORMATION_MESSAGE);
-                    dialog = noQuestionPane.createDialog(panel.getParent(), "ERROR");
+                    dialog = noQuestionPane.createDialog(mainDesktop, "ERROR");
                     dialog.setModal(false);
                     dialog.setVisible(true);
                 }
