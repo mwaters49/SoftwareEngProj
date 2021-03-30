@@ -67,8 +67,9 @@ public class DisplayTests {
                 "without questions set in teacher frame")
     @Test
     void noQuestionsSetTest(){
-        display.teacherButton.doClick();
-        assertFalse(display.mainDesktop.isFocusOwner());
+        display.studentButton.doClick();
+        assertTrue(display.dialog.isVisible());
+        //assertFalse(display.mainDesktop.isFocusOwner());
     }
 
     @DisplayName("Test exit button closes the desktop pane")
