@@ -96,21 +96,18 @@ public class TeacherSectionFrame extends JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isQuestionFilled()) {
-//                    JOptionPane.showMessageDialog(panel, "Question Not Filled");
                     pane = new JOptionPane("Question Not Filled", JOptionPane.INFORMATION_MESSAGE);
                     dialog = pane.createDialog(panel.getParent(), "ERROR");
                     dialog.setModal(false);
                     dialog.setVisible(true);
                 } else if (!isAnswersFilled())
                 {
-//                    JOptionPane.showMessageDialog(panel, "Answers Not Filled");
                     pane = new JOptionPane("Answers Not Filled", JOptionPane.INFORMATION_MESSAGE);
                     dialog = pane.createDialog(panel.getParent(), "ERROR");
                     dialog.setModal(false);
                     dialog.setVisible(true);
                 } else if (!isCorrectAnswerSelected())
                 {
-//                    JOptionPane.showMessageDialog(panel, "Correct Answer Not Selected");
                     pane = new JOptionPane("Correct Answer Not Selected", JOptionPane.INFORMATION_MESSAGE);
                     dialog = pane.createDialog(panel.getParent(), "ERROR");
                     dialog.setModal(false);
@@ -160,7 +157,6 @@ public class TeacherSectionFrame extends JInternalFrame {
                     dialog.setModal(false);
                     dialog.setVisible(true);
                 }else{
-//                    JOptionPane.showMessageDialog(panel, "No more questions to clear!?!");
                     noClearPane = new JOptionPane("No more questions to clear!?!", JOptionPane.INFORMATION_MESSAGE);
                     dialog = noClearPane.createDialog(panel.getParent(), "ERROR");
                     dialog.setModal(false);

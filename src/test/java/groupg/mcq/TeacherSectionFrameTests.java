@@ -1,7 +1,6 @@
 package groupg.mcq;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,6 @@ public class TeacherSectionFrameTests {
         TeacherSectionFrame.questionCount = 0;
         TeacherSectionFrame.correctAnswerCount = 0;
     }
-
 
     @Test
     @DisplayName("Testing questions are set")

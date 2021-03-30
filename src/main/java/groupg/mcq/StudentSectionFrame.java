@@ -3,11 +3,9 @@ package groupg.mcq;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 
 public class StudentSectionFrame extends JInternalFrame {
-
 
     TeacherSectionFrame teacherSectionFrame = new TeacherSectionFrame();
     JOptionPane pane = new JOptionPane();
